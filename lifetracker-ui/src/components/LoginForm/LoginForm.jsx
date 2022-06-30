@@ -22,6 +22,10 @@ export default function LoginForm() {
 
         setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
     }
+
+    const handleOnSubmit = () => {
+        
+    }
     return (
         <div className="login-form">
             <div className="card">
