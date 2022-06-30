@@ -4,8 +4,22 @@ body {
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--codepath-dark);
+}
+
+:root {
+  --codepath-dark: #2c4047;
+  --codepath-green: #30c98e;
+  --accent-gold: #ffab09;
+  --accent-blue: #4e81eb;
+  --accent-aqua: #03c5d1;
+
 }
 
 * {
   box-sizing: border-box;
+}
+
+.content {
+  margin: 0 20rem;
 }

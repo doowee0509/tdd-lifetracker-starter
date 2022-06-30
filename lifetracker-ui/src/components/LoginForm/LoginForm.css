@@ -92,6 +92,7 @@
     font-weight: 700;
     font-size: 24px;
     margin: 1rem 0;
+    cursor: pointer;
 }
 
 .error {

@@ -1,0 +1,58 @@
+.activity-feed .actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.activity-feed .actions h2 {
+    font-size: 42px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    font-weight: bold;
+}
+
+.activity-feed .actions .add-btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.heading {
+    font-weight: 700;
+}
+
+.add-btn {
+    background: transparent;
+    padding: 10px 20px;
+    max-height: 40px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+}
+
+.gold {
+    color: var(--accent-gold);
+    border: solid 1px var(--accent-gold)
+}
+
+.blue {
+    color: var(--accent-blue);
+    border: solid 1px var(--accent-blue)
+}
+
+.aqua {
+    color: var(--accent-aqua);
+    border: solid 1px var(--accent-aqua)
+}
+
+.per-category {
+    color: white
+}

@@ -3,12 +3,12 @@ import "./Navbar.css"
 import { Link } from "react-router-dom"
 import NavLinks from "../NavLinks/NavLinks"
 
-export default function Navbar() {
+export default function Navbar(props) {
     return (
         <nav className="navbar">
             <div className="content">
                 <Logo />
-                <NavLinks />
+                <NavLinks auth={props.auth} setAuth={props.setAuth}/>
             </div>
         </nav>
     )

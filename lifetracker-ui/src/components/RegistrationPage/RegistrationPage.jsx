@@ -5,16 +5,15 @@ import RegistrationForm from "../RegistrationForm/RegistrationForm"
 import Redirect from "react"
 
 
-export default function RegistrationPage(){
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+export default function RegistrationPage(props){
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (isLoggedIn) {
+        if (props.auth) {
             navigate("/activity")
         }
-    }, [isLoggedIn, navigate])
+    }, [props.auth, navigate])
     return (
-        <RegistrationForm/>
+        <RegistrationForm  auth={props.auth} setAuth={props.setAuth}/>
     )
 }

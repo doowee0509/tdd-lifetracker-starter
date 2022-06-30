@@ -1,20 +1,21 @@
 import * as React from "react"
 import { useState, useEffect } from "react"
-import { Link , useNavigate} from "react-router-dom"
+import { Link , useNavigate, useLocation} from "react-router-dom"
 import LoginForm from "../LoginForm/LoginForm"
 import Redirect from "react"
 
 
-export default function LoginPage(){
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+export default function LoginPage(props){
     const navigate = useNavigate()
+    const location = useLocation()
 
     useEffect(() => {
-        if (isLoggedIn) {
-            navigate("/activity")
+        if (props.auth) {
+            navigate(location.state.link)
         }
-    }, [isLoggedIn, navigate])
+    }, [props.auth, navigate])
+
     return (
-        <LoginForm/>
+        <LoginForm auth={props.auth} setAuth={props.setAuth} link={location?.state?.link}/>
     )
 }

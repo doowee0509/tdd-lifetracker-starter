@@ -1,9 +1,11 @@
 import * as React from "react"
 import { useState } from "react"
 import "./RegistrationForm.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import axios from "axios"
 
-export default function RegistrationForm() {
+export default function RegistrationForm(props) {
+    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const [form, setForm] = useState({
@@ -41,10 +43,43 @@ export default function RegistrationForm() {
         setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
     }
     
+    const handleOnSubmit = async () => {
+        setIsLoading(true)
+        setErrors((e) => ({ ...e, form: null }))
+        
+        if (form.passwordConfirm === "") {
+            return
+        }
+
+        try {
+            const res = await axios.post("http://localhost:3001/auth/register", {
+                first_name: form.first_name,
+                last_name: form.last_name,
+                email: form.email,
+                password: form.password,
+                username: form.username
+            })
+    
+            if (res?.data?.user) {
+                setIsLoading(false)
+                props.setAuth(true)
+                navigate("/activity")
+            } else {
+                setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
+                setIsLoading(false)
+            }
+        } catch (err) {
+            const message = err?.response?.data?.error?.message
+            setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
+            setIsLoading(false)
+        }
+    }
+
     return (
         <div className="registration-form">
             <div className="card">
                 <h2>Register</h2>
+                {(errors.form !== null) ? <span className="error">{errors.form}</span> : null}
                 <br />
                 <div className="form">
                     <div className="input-field">
@@ -58,9 +93,9 @@ export default function RegistrationForm() {
                     </div>
                     <div className="split-input-field">
                         <div className="input-field">
-                            <input type="text" name="firstName" placeholder="First Name" value={form.first_name} onChange={handleOnInputChange}/>
+                            <input type="text" name="first_name" placeholder="First Name" value={form.first_name} onChange={handleOnInputChange}/>
                         </div><div className="input-field">
-                            <input type="text" name="lastName" placeholder="Last Name" value={form.last_name} onChange={handleOnInputChange}/>
+                            <input type="text" name="last_name" placeholder="Last Name" value={form.last_name} onChange={handleOnInputChange}/>
                         </div>
                     </div>
                     <div className="input-field">
@@ -72,7 +107,9 @@ export default function RegistrationForm() {
                         <input type="password" name="confirm_password" placeholder="password" value={form.confirm_password} onChange={handleOnInputChange}/>
                         {(errors.confirm_password !== null && form.confirm_password !== "")  ? <span className="error">Password do not match.</span> : null}
                     </div>
-                    <input id="submit" type="submit" value="Create Account" className="login-btn" />
+                    <button className="login-btn" disabled={isLoading} onClick={handleOnSubmit}>
+                        {isLoading ? "Loading..." : "Register"}
+                    </button>
                 </div>
                 <div className="footer">
                     <p>Already have an account? Sign in

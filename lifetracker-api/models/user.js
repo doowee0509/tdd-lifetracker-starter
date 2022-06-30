@@ -40,13 +40,16 @@ class User {
     static async register(creds) {
         //user should submit email, pw, resvp status and # of guest
         // if any of the field are missing, throw an error
-        const requiredFields = ["email", 'password', 'username', 'first_name', 'last_name']
+        const requiredFields = ["email", 'username', 'first_name', 'last_name', 'password']
         requiredFields.forEach(field => {
             if (!creds.hasOwnProperty(field)) {
                 throw new BadRequestError(`Missing ${field} in request body.`)
+            } 
+            if (creds.hasOwnProperty(field) && creds[field] === '') {
+                throw new BadRequestError(`Cannot have empty ${field} in request body.`)
             }
         })
-
+        
         if(creds.email.indexOf('@') <= 0) {
             throw new BadRequestError('Invalid email')
         }
@@ -56,10 +59,12 @@ class User {
         if (existingUser) {
             throw new BadRequestError(`Duplicate email: ${creds.email}`)
         }
-        if (existingUser.username === creds.username) {
+        
+        const results = await db.query("SELECT username FROM users;")
+        const usernames = results?.rows
+        if (usernames.indexOf(creds.username) !== -1) {
             throw new BadRequestError(`Duplicate username: ${creds.username}`)
         }
-
         // hash user password
         
         const hashedPassword = await bcrypt.hash(creds.password, BCRYPT_WORK_FACTOR)
@@ -77,9 +82,10 @@ class User {
             VALUES ($1, $2, $3, $4, $5)
             RETURNING id, email, password, first_name, last_name, username, created_at;
         `,
-        [lowercasedEmail, hashedPassword, creds.firstName, creds.lastName, creds.username]
+        [lowercasedEmail, hashedPassword, creds.first_name, creds.last_name, creds.username]
         )
         //return user
+        console.log(User.makePublicUser(result.rows[0]))
         return User.makePublicUser(result.rows[0])
     }
 
