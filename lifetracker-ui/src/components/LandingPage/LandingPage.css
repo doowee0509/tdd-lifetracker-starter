@@ -1,0 +1,56 @@
+.landing-page{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.landing-page .hero {
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.landing-page .hero img {
+    position: absolute;
+}
+
+.landing-page .hero h1, .landing-page .hero p{
+    color: white;
+    position: relative;
+    z-index: 10;
+}
+
+.landing-page .hero h1{
+    font-size: 76px;
+    font-weight: 700;
+}
+
+.landing-page .hero p{
+    font-size: 24px;
+}
+
+.landing-page .tiles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 750px;
+    margin: 50px auto 0;
+}
+
+.landing-page .tiles .tile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-page .tiles .tile p {
+    color: white;
+    margin-top: 3px;
+    font-weight: 700;
+}
