@@ -3,7 +3,6 @@ import "./NavLinks.css"
 import { Link, useNavigate} from "react-router-dom"
 
 export default function NavLinks(props) {
-    console.log(props)
     const navigate = useNavigate()
     
     const handleOnLogout = () => {

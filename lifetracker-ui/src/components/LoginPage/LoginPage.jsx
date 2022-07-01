@@ -11,7 +11,8 @@ export default function LoginPage(props){
 
     useEffect(() => {
         if (props.auth) {
-            navigate(location.state.link)
+            const link = location?.state?.link ? location?.state?.link : "/activity"
+            navigate(link)
         }
     }, [props.auth, navigate])
 
