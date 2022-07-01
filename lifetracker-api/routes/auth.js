@@ -10,7 +10,7 @@ router.get("/me", security.requireAuthenticatedUser, async function (req, res, n
         const {email} = res.locals.user
         const user = await User.fetchUserByEmail(email)
         const publicUser = await User.makePublicUser(user)
-        return res.status(200).json({ publicUser })
+        return res.status(200).json({ user: publicUser })
     } catch (err) {
         next(err)
     }

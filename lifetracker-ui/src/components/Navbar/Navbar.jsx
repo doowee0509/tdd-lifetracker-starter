@@ -8,7 +8,7 @@ export default function Navbar(props) {
         <nav className="navbar">
             <div className="content">
                 <Logo />
-                <NavLinks auth={props.auth} setAuth={props.setAuth}/>
+                <NavLinks handleLogout={props.handleLogout}/>
             </div>
         </nav>
     )
