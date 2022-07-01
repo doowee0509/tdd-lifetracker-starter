@@ -3,7 +3,7 @@
 
 Submitted by: **Duy Nguyen**
 
-Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
+Deployed Application: [Lifetracker Deployed Site](https://deafening-day.surge.sh/)
 
 ## Overview
 > Data is the new oil - Clive Humbly
