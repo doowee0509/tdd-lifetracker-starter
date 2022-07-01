@@ -30,6 +30,18 @@ class ApiClient {
         }
     }
 
+    async fetchUserNutritions(user_id) {
+        return await this.request({ endpoint: `nutritions`, method: `GET`, data: user_id })
+    }
+
+    async fetchNutritionById(id) {
+        return await this.request({ endpoint: `nutrition/${id}`, method: `GET`})
+    }
+
+    async createNutrition(creds) {
+        return await this.request({ endpoint: `nutrition/create`, method: `POST`, data: creds })
+    }
+
     async fetchUserFromToken() {
         return await this.request({ endpoint: `auth/me`, method: `GET` })
     }

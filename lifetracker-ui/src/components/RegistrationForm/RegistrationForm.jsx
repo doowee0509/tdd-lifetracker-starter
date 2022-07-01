@@ -8,7 +8,7 @@ import { useAuthContext } from "../../contexts/auth"
 export default function RegistrationForm(props) {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
-    const {user, setUser, errors, setErrors} = useAuthContext()
+    const {user, setUser, error, setError} = useAuthContext()
     const [form, setForm] = useState({
         email: "",
         username: "",
@@ -29,23 +29,23 @@ export default function RegistrationForm(props) {
     const handleOnInputChange = (event) => {
         if (event.target.name === "email") {
             if (event.target.value.indexOf("@") < 1) {
-                setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
+                setError((e) => ({ ...e, email: "Please enter a valid email." }))
             } else {
-                setErrors((e) => ({ ...e, email: null }))
+                setError((e) => ({ ...e, email: null }))
             }
         }
         if (event.target.name === "password") {
             if (event.target.value !== form.confirm_password) {
-                setErrors((e) => ({ ...e, confirm_password: "Password do not match." }))
+                setError((e) => ({ ...e, confirm_password: "Password do not match." }))
             } else {
-                setErrors((e) => ({ ...e, confirm_password: null }))
+                setError((e) => ({ ...e, confirm_password: null }))
             }
         }
         if (event.target.name === "confirm_password") {
             if (event.target.value !== form.password) {
-                setErrors((e) => ({ ...e, confirm_password: "Password do not match." }))
+                setError((e) => ({ ...e, confirm_password: "Password do not match." }))
             } else {
-                setErrors((e) => ({ ...e, confirm_password: null }))
+                setError((e) => ({ ...e, confirm_password: null }))
             }
         }
 
@@ -54,7 +54,7 @@ export default function RegistrationForm(props) {
     
     const handleOnSubmit = async () => {
         setIsLoading(true)
-        setErrors((e) => ({ ...e, form: null }))
+        setError((e) => ({ ...e, form: null }))
         
         if (form.passwordConfirm === "") {
             return
@@ -68,7 +68,7 @@ export default function RegistrationForm(props) {
                     username: form.username
                 })
                 
-        if (error) setErrors((e) => ({ ...e, form: error }))
+        if (error) setError((e) => ({ ...e, form: error }))
         if (data?.user) {
             apiClient.setToken(data.token)
             setUser(data?.user)
@@ -90,12 +90,12 @@ export default function RegistrationForm(props) {
         //         props.setAuth(true)
         //         navigate("/activity")
         //     } else {
-        //         setErrors((e) => ({ ...e, form: "Something went wrong with registration" }))
+        //         setError((e) => ({ ...e, form: "Something went wrong with registration" }))
         //         setIsLoading(false)
         //     }
         // } catch (err) {
         //     const message = err?.response?.data?.error?.message
-        //     setErrors((e) => ({ ...e, form: message ? String(message) : String(err) }))
+        //     setError((e) => ({ ...e, form: message ? String(message) : String(err) }))
         //     setIsLoading(false)
         // }
     }
@@ -104,13 +104,13 @@ export default function RegistrationForm(props) {
         <div className="registration-form">
             <div className="card">
                 <h2>Register</h2>
-                {(errors?.form !== null) ? <span className="error">{errors?.form}</span> : null}
+                {(error?.form !== null) ? <span className="error">{error?.form}</span> : null}
                 <br />
                 <div className="form">
                     <div className="input-field">
                         <label htmlFor="Email">Email</label>
                         <input type="email" name="email" placeholder="user@gmail.com" value={form.email} onChange={handleOnInputChange}/>
-                        {(errors?.email !== null && form.email !== "") ? <span className="error">Please enter a valid email.</span> : null}
+                        {(error?.email !== null && form.email !== "") ? <span className="error">Please enter a valid email.</span> : null}
                     </div>
                     <div className="input-field">
                         <label htmlFor="Username">Username</label>
@@ -130,7 +130,7 @@ export default function RegistrationForm(props) {
                     <div className="input-field">
                         <label htmlFor="Password">Confirm Password</label>
                         <input type="password" name="confirm_password" placeholder="password" value={form.confirm_password} onChange={handleOnInputChange}/>
-                        {(errors?.confirm_password !== null && form.confirm_password !== "")  ? <span className="error">Password do not match.</span> : null}
+                        {(error?.confirm_password !== null && form.confirm_password !== "")  ? <span className="error">Password do not match.</span> : null}
                     </div>
                     <button className="login-btn" disabled={isLoading} onClick={handleOnSubmit}>
                         {isLoading ? "Loading..." : "Register"}

@@ -7,7 +7,7 @@ import { useAuthContext } from "../../contexts/auth"
 
 export default function LoginForm(props) {
     const [isLoading, setIsLoading] = useState(false)
-    const {user, setUser, errors, setErrors} = useAuthContext()
+    const {user, setUser, error, setError} = useAuthContext()
 
     const [form, setForm] = useState({
         email: "",
@@ -27,9 +27,9 @@ export default function LoginForm(props) {
     const handleOnInputChange = (event) => {
         if (event.target.name === "email") {
             if (event.target.value.indexOf("@") < 1) {
-                setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
+                setError((e) => ({ ...e, email: "Please enter a valid email." }))
             } else {
-                setErrors((e) => ({ ...e, email: null }))
+                setError((e) => ({ ...e, email: null }))
             }
         }
 
@@ -39,14 +39,14 @@ export default function LoginForm(props) {
     const handleOnSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
-        setErrors((e) => ({ ...e, form: null }))
+        setError((e) => ({ ...e, form: null }))
     
         const {data, error} = await apiClient.loginUser({
             email: form.email,
             password: form.password,
         })
         
-        if (error) setErrors((e) => ({ ...e, form: error }))
+        if (error) setError((e) => ({ ...e, form: error }))
 
         if (data?.user) {
             apiClient.setToken(data.token)
@@ -59,14 +59,14 @@ export default function LoginForm(props) {
         <div className="login-form">
             <div className="card">
                 <h2>Login</h2>
-                {(errors?.form?.includes("AxiosError")) ? <span className="error">Invalid email/password</span> : null}
+                {(error?.form?.includes("AxiosError")) ? <span className="error">Invalid email/password</span> : null}
                 {(props.link) ? <span className="error">You must be logged in to access that page</span> : null}
                 <br />
                 <div className="form">
                     <div className="input-field">
                         <label htmlFor="Email">Email</label>
                         <input type="email" name="email" placeholder="user@gmail.com" value={form.email} onChange={handleOnInputChange}/>
-                        {(errors?.email !== null && form.email !== "") ? <span className="error">Please enter a valid email.</span> : null}
+                        {(error?.email !== null && form.email !== "") ? <span className="error">Please enter a valid email.</span> : null}
                     </div>
                     <div className="input-field">
                         <label htmlFor="Password">Password</label>

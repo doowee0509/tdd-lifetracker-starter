@@ -20,17 +20,17 @@ export default function AppContainer() {
 
 function App() {
   const [auth, setAuth] = React.useState(false)
-  const {setUser, setErrors, setIsProcessing, setInitialized} = useAuthContext()
+  const {setUser, setError, setIsProcessing, setInitialized} = useAuthContext()
 
   React.useEffect(() => {
     const fetchUser = async () => {
       const { data, error } = await apiClient.fetchUserFromToken()
       if (error?.response?.data?.error?.status !== 304) {
-        setErrors((e) => ({ ...e, user: error }))
+        setError((e) => ({ ...e, user: error }))
       }
       if (data?.user) {
         setUser(data.user)
-        setErrors((e) => ({ ...e, user: null }))
+        setError((e) => ({ ...e, user: null }))
       }
     }
 
@@ -38,18 +38,18 @@ function App() {
     if (token) {
       apiClient.setToken(token)
       setIsProcessing(true)
-      setErrors(null)
+      setError(null)
       fetchUser()
     }
 
     setInitialized(true)
     setIsProcessing(false)
-  }, [setUser, setIsProcessing, setErrors, setInitialized])
+  }, [setUser, setIsProcessing, setError, setInitialized])
 
   const handleLogout = async () => {
     await apiClient.logoutUser()
     setUser({})
-    setErrors(null)
+    setError(null)
   }
 
   return (

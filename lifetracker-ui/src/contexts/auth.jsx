@@ -6,9 +6,9 @@ export const AuthContextProvider = ({children}) => {
     const [user, setUser] = useState({})
     const [initialized, setInitialized] = useState(false)
     const [isProcessing, setIsProcessing] = useState(false)
-    const [errors, setErrors] = useState({})
+    const [error, setError] = useState({})
 
-    const authValue = {user, setUser, errors, setErrors, initialized, setInitialized, isProcessing, setIsProcessing}
+    const authValue = {user, setUser, error, setError, initialized, setInitialized, isProcessing, setIsProcessing}
     return (
         <AuthContext.Provider value ={authValue}>
             <>{children}</>
