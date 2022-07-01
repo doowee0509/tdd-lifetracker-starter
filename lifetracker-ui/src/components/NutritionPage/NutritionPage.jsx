@@ -5,6 +5,7 @@ import { useAuthContext } from "../../contexts/auth"
 import NutritionOverview from "../NutritionOverview/NutritionOverview"
 import NotFound from "components/NotFound/NotFound"
 import NutritionNew from "components/NutritionNew/NutritionNew"
+import NutritionDetail from "components/NutritionDetail/NutritionDetail"
 import apiClient from "../../services/apiClient"
 import "./NutritionPage.css"
 
@@ -51,7 +52,7 @@ function NutritionPage() {
                 <Routes>
                     <Route path="/" element={<NutritionOverview />}/>
                     <Route path="/nutrition/create" element={<NutritionNew />} />
-                    {/* <Route path="/nutrition/id/:nutritionId" element={<RegistrationPage />} /> */}
+                    <Route path="/nutrition/id/:nutritionId" element={<NutritionDetail />} />
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
             </div>

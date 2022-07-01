@@ -1,0 +1,71 @@
+.nutrition-card {
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding:0 8px 8px 8px;
+    background: var(--accent-aqua);
+}
+
+.nutrition-card .card-header {
+    justify-content: flex-start;
+}
+
+.nutrition-card .card-header, .nutrition-card .card-stats {
+    display: flex;
+    align-items: center;
+}
+
+.nutrition-card .card-header img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.nutrition-card .card-header .title{
+    color: white;
+}
+
+.nutrition-card .card-stats {
+    justify-content: space-between;
+}
+
+.nutrition-card .card-stats .card-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-stat p, .card-stat span{
+    color: white;
+    font-weight: 400;
+}
+
+.card-stat span {
+    font-size: 40px;
+}
+
+.card-stat p {
+    font-size: 22px;
+}
+
+.nutrition-card .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nutrition-card .card-meta small {
+    color: white;
+
+}
+
+.nutrition-card .card-meta .nutrition-category {
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 8px 12px;
+}

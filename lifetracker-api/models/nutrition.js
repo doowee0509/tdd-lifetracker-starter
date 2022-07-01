@@ -3,9 +3,8 @@ const { BadRequestError } = require("../utils/errors")
 class Nutrition {
 
     static async createNutrition(creds) {
-        console.log("ran create")
         //required fields are email and password, throw error if either are missing
-        const requiredFields = ['name', 'category', 'calories', 'image_url', 'user_id']
+        const requiredFields = ['name', 'category', 'calories', 'imageUrl', 'user_id']
         requiredFields.forEach(field => {
             if (!creds.hasOwnProperty(field)) {
                 throw new BadRequestError(`Missing ${field} in request body.`)
@@ -14,6 +13,7 @@ class Nutrition {
                 throw new BadRequestError(`Cannot have empty ${field} in request body.`)
             }
         })
+
         const result = await db.query(`
             INSERT INTO nutrition (
                 name,

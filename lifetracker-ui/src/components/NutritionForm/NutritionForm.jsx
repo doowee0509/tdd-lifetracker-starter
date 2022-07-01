@@ -2,10 +2,13 @@ import * as React from "react"
 import "./NutritionForm.css"
 import { useNutritionContext } from "../../contexts/nutrition"
 import { useAuthContext } from "../../contexts/auth"
+import apiClient from "../../services/apiClient"
+import { useNavigate } from "react-router-dom"
 
 export default function NutritionForm() {
-    const {isLoading} = useNutritionContext()
+    const {isLoading, setIsLoading, setError, nutritions, setNutritions} = useNutritionContext()
     const {user} = useAuthContext()
+    const navigate = useNavigate()
     const [form, setForm] = React.useState({
         name: "",
         category: "",
@@ -23,24 +26,20 @@ export default function NutritionForm() {
     const handleOnSubmit = async () => {
         setIsLoading(true)
         setError((e) => ({ ...e, form: null }))
-        
-        if (form.passwordConfirm === "") {
-            return
-        }
 
-        const {data, error} = await apiClient.signupUser({
-                    first_name: form.first_name,
-                    last_name: form.last_name,
-                    email: form.email,
-                    password: form.password,
-                    username: form.username
+        const {data, error} = await apiClient.createNutrition({
+                    name: form.name,
+                    category: form.category,
+                    quanity: form.quantity,
+                    calories: form.calories,
+                    imageUrl: form.imageUrl,
+                    user_id: user.id
                 })
                 
         if (error) setError((e) => ({ ...e, form: error }))
-        if (data?.user) {
-            apiClient.setToken(data.token)
-            setUser(data?.user)
-            navigate("/activity")
+        if (data?.nutrition) {
+            setNutritions([...nutritions, data.nutrition])
+            navigate("/nutrition")
         }
         
         setIsLoading(false)
