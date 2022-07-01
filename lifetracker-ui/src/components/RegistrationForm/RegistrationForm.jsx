@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import apiClient from "../../services/apiClient"
 import { useAuthContext } from "../../contexts/auth"
 
-export default function RegistrationForm(props) {
+export default function RegistrationForm() {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const {user, setUser, error, setError} = useAuthContext()

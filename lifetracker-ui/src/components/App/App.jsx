@@ -7,6 +7,7 @@ import RegistrationPage from "components/RegistrationPage/RegistrationPage"
 import NotFound from "components/NotFound/NotFound"
 import ActivityPage from "components/ActivityPage/ActivityPage"
 import { AuthContextProvider, useAuthContext } from "../../contexts/auth"
+import NutritionPage from "../NutritionPage/NutritionPage"
 import apiClient from "../../services/apiClient"
 import "./App.css"
 
@@ -19,7 +20,6 @@ export default function AppContainer() {
 }
 
 function App() {
-  const [auth, setAuth] = React.useState(false)
   const {setUser, setError, setIsProcessing, setInitialized} = useAuthContext()
 
   React.useEffect(() => {
@@ -60,9 +60,10 @@ function App() {
             <Navbar handleLogout={handleLogout}/>
             <Routes>
               <Route path="/" element={<LandingPage />}/>
-              <Route path="/login" element={<LoginPage auth={auth} setAuth={setAuth}/>} />
-              <Route path="/register" element={<RegistrationPage auth={auth} setAuth={setAuth} />} />
-              <Route path="/activity" element={<ActivityPage auth={auth}/>} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegistrationPage  />} />
+              <Route path="/activity" element={<ActivityPage />} />
+              <Route path="/nutrition/*" element={<NutritionPage />} />
               <Route path="*" element={<NotFound />}/>
             </Routes>
           </main>

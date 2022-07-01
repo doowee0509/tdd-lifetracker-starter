@@ -1,0 +1,19 @@
+.nutrition-page {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--less-dark-bg);
+    height: 120px;
+}
+
+.banner h1 {
+    font-size: 42px;
+    color: white;
+    font-weight: bolder;
+}

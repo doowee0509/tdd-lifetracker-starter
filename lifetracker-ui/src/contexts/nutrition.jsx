@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from "react"
 const NutritionContext = createContext(null)
 
 export const NutritionContextProvider = ({children}) => {
-    const [nutritions, ] = useState([])
+    const [nutritions, setNutritions] = useState([])
     const [initialized, setInitialized] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState({})

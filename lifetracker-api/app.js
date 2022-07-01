@@ -15,7 +15,7 @@ app.use(express.json())
 app.use(security.extractUserFromJwt)
 
 app.use("/auth", authRoutes)
-app.use("/nutrition", nutritionRoutes)
+app.use("/nutritions", nutritionRoutes)
 
 app.get("/",(req, res, next) => {
     res.status(200).json({"ping":"pong"})

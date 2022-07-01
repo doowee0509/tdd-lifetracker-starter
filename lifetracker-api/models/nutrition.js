@@ -3,6 +3,7 @@ const { BadRequestError } = require("../utils/errors")
 class Nutrition {
 
     static async createNutrition(creds) {
+        console.log("ran create")
         //required fields are email and password, throw error if either are missing
         const requiredFields = ['name', 'category', 'calories', 'image_url', 'user_id']
         requiredFields.forEach(field => {
@@ -24,7 +25,7 @@ class Nutrition {
             VALUES ($1, $2, $3, $4, $5)
             RETURNING id, name, category, calories, image_url, user_id, created_at;
         `,
-        [creds.name, creds.category, creds.calories , creds.image_url, creds.user_id]
+        [creds.name, creds.category, creds.calories , creds.imageUrl, creds.user_id]
         )
 
         return result.rows[0]
@@ -49,8 +50,8 @@ class Nutrition {
         const query = `SELECT * FROM nutrition WHERE user_id = $1`
 
         const results = await db.query(query, [user_id])
-
-        return results?.rows
+        console.log(results.rows)
+        return results.rows
     }
 }
 

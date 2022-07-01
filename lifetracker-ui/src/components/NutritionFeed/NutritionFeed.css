@@ -1,0 +1,20 @@
+.nutrition-feed {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 50px;
+    padding-bottom: 50px;
+}
+
+.nutrition-feed .empty {
+    margin: 0 auto;
+}
+
+.empty-message {
+    font-size: 32px;
+    color: white;
+    padding: 10px 20px;
+    border: 1px solid white;
+    border-radius: 4px;
+}

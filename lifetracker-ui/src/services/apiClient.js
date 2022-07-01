@@ -25,21 +25,21 @@ class ApiClient {
             return {data: res.data, error: null}
         } catch (err) {
             console.error({errorResponse: err.response})
-            const message = error?.response?.data?.error?.message
+            const message = err?.response?.data?.error?.message
             return {data: null, error: message || String(err)}
         }
     }
 
-    async fetchUserNutritions(user_id) {
-        return await this.request({ endpoint: `nutritions`, method: `GET`, data: user_id })
+    async fetchUserNutritions() {
+        return await this.request({ endpoint: `nutritions`, method: `GET`})   
     }
 
     async fetchNutritionById(id) {
-        return await this.request({ endpoint: `nutrition/${id}`, method: `GET`})
+        return await this.request({ endpoint: `nutritions/${id}`, method: `GET`})
     }
 
     async createNutrition(creds) {
-        return await this.request({ endpoint: `nutrition/create`, method: `POST`, data: creds })
+        return await this.request({ endpoint: `nutritions/create`, method: `POST`, data: creds })
     }
 
     async fetchUserFromToken() {
