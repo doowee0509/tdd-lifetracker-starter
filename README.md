@@ -124,46 +124,46 @@ The components in the `App.jsx` file should render the following components (alo
       - [ ] `PRODUCTION_API_BASE_URL` - set to whatever url the production API is deployed at
       - [ ] `DEVELOPMENT_API_BASE_URL` - set to "http://localhost:3001" for development
       - [ ] `API_BASE_URL` - if `process.env.NODE_ENV` is `production`, set this to `PRODUCTION_API_BASE_URL`, otherwise set it to `DEVELOPMENT_API_BASE_URL`
-    - [ ] Next, create a `services` directory at the root of the project
-    - [ ] Inside that directory, touch an `apiClient.js` file
-    - [ ] In that file, import the `axios` package and the `API_BASE_URL` constant from the `constants.js` file
-    - [ ] Define a new class in that file called `ApiClient`.
-      - [ ] Give it a constructor function that accepts a single parameter - `remoteHostUrl`. The constructor should attach the `remoteHostUrl` parameter to a new instance with `this.remoteHostUrl = remoteHostUrl`. It should also set `this.token = null`.
-      - [ ] Export default a new instance of the `ApiClient` class
-      - [ ] Add an additional method called `setToken` that accepts a single parameter - `token` and attaches it to the instance.
-      - [ ] Create a utility method called `request` that uses `axios` to issue HTTP requests
-      - [ ] Add a `login` method that uses the `request` method to send an HTTP request to the `auth/login` endpoint
-      - [ ] Add a `signup` method that uses the `request` method to send an HTTP request to the `auth/register` endpoint
-      - [ ] Add a `fetchUserFromToken` method that uses the `request` method to send an HTTP request to the `auth/me` endpoint
-      - [ ] **Add as many other methods as needed when making API requests**
+    - [x] Next, create a `services` directory at the root of the project
+    - [x] Inside that directory, touch an `apiClient.js` file
+    - [x] In that file, import the `axios` package and the `API_BASE_URL` constant from the `constants.js` file
+    - [x] Define a new class in that file called `ApiClient`.
+      - [x] Give it a constructor function that accepts a single parameter - `remoteHostUrl`. The constructor should attach the `remoteHostUrl` parameter to a new instance with `this.remoteHostUrl = remoteHostUrl`. It should also set `this.token = null`.
+      - [x] Export default a new instance of the `ApiClient` class
+      - [x] Add an additional method called `setToken` that accepts a single parameter - `token` and attaches it to the instance.
+      - [x] Create a utility method called `request` that uses `axios` to issue HTTP requests
+      - [x] Add a `login` method that uses the `request` method to send an HTTP request to the `auth/login` endpoint
+      - [x] Add a `signup` method that uses the `request` method to send an HTTP request to the `auth/register` endpoint
+      - [x] Add a `fetchUserFromToken` method that uses the `request` method to send an HTTP request to the `auth/me` endpoint
+      - [x] **Add as many other methods as needed when making API requests**
 
-  - [ ] Create an **`auth`** context:
+  - [x] Create an **`auth`** context:
 
-    - [ ] First, create a `contexts` directory at the root of the project
-    - [ ] Inside it, touch the `contexts/auth.jsx` file
-    - [ ] In that file, define a new `AuthContext` with `React.createContext`
-    - [ ] Use that context to create an `AuthContextProvider` component
-      - [ ] The Provider component should create state variables and updaters needed for `user`, `initialized`, `isProcessing`, and `error`.
-      - [ ] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
-        - [ ] That hook should check to see if a JWT token exists in local storage under the `lifetracker_token` key
-          - [ ] If it does:
-            - [ ] It should add that token to `ApiClient` class with the `setToken` method
-            - [ ] Then, it should set the `isProcessing` state variable to `true` and the `error` state variable to `null`
-            - [ ] Next, it should send a `GET` request to the `/auth/me` endpoint
-              - [ ] If it fails, it should set the `error` prop to a valid error message
-              - [ ] If it is successful...
-                - [ ] It should set the `user` state variable with the `user` returned in the response
-                - [ ] It should set the `error` state variable to `null`
-            - [ ] Regardless, it should set the `isProcessing` state variable to `false` and the `initialized` state variable to `true`
-          - [ ] The user returned from that request should be stored in state. This will ensure that users stay logged in even if they refresh the page.
-      - [ ] It should also define handler functions for:
-        - [ ] `loginUser` - should make a request to log the user in
-        - [ ] `signupUser` - should make a request to sign the user up
-        - [ ] `fetchUserFromToken` - should make a request to the `/auth/me` route to get the user's info
-        - [ ] `logoutUser` - this function should remove the `lifetracker_token` from local storage and refresh the page so that all user data is reset
-      - [ ] Make sure to set all the state variables as the `value` prop passed to the `AuthContext.Provider` component
-    - [ ] Create and export a `useAuthContext` hook that calls the `React.useContext` hook with the newly created `AuthContext` and returns it.
-    - [ ] In `App.jsx` file create an `AppContainer` component that wraps the `App` component with the `AuthContextProvider` component (which should still be nested inside the `BrowserRouter` component from `react-router-dom`). Export the `AppContainer` component by default instead of the `App`
+    - [x] First, create a `contexts` directory at the root of the project
+    - [x] Inside it, touch the `contexts/auth.jsx` file
+    - [x] In that file, define a new `AuthContext` with `React.createContext`
+    - [x] Use that context to create an `AuthContextProvider` component
+      - [x] The Provider component should create state variables and updaters needed for `user`, `initialized`, `isProcessing`, and `error`.
+      - [x] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
+        - [x] That hook should check to see if a JWT token exists in local storage under the `lifetracker_token` key
+          - [x] If it does:
+            - [x] It should add that token to `ApiClient` class with the `setToken` method
+            - [x] Then, it should set the `isProcessing` state variable to `true` and the `error` state variable to `null`
+            - [x] Next, it should send a `GET` request to the `/auth/me` endpoint
+              - [x] If it fails, it should set the `error` prop to a valid error message
+              - [x] If it is successful...
+                - [x] It should set the `user` state variable with the `user` returned in the response
+                - [x] It should set the `error` state variable to `null`
+            - [x] Regardless, it should set the `isProcessing` state variable to `false` and the `initialized` state variable to `true`
+          - [x] The user returned from that request should be stored in state. This will ensure that users stay logged in even if they refresh the page.
+      - [x] It should also define handler functions for:
+        - [x] `loginUser` - should make a request to log the user in
+        - [x] `signupUser` - should make a request to sign the user up
+        - [x] `fetchUserFromToken` - should make a request to the `/auth/me` route to get the user's info
+        - [x] `logoutUser` - this function should remove the `lifetracker_token` from local storage and refresh the page so that all user data is reset
+      - [x] Make sure to set all the state variables as the `value` prop passed to the `AuthContext.Provider` component
+    - [x] Create and export a `useAuthContext` hook that calls the `React.useContext` hook with the newly created `AuthContext` and returns it.
+    - [x] In `App.jsx` file create an `AppContainer` component that wraps the `App` component with the `AuthContextProvider` component (which should still be nested inside the `BrowserRouter` component from `react-router-dom`). Export the `AppContainer` component by default instead of the `App`
 
   - [x] The **`Loading.jsx`** component
 
@@ -186,9 +186,9 @@ The components in the `App.jsx` file should render the following components (alo
       - [x] The `/activity` route. It should have a label of `Activity`.
       - [x] The `/nutrition` route. It should have a label of `Nutrition`.
       - [x] A route for any other resource page
-    - [ ] If a valid user is logged in:
-      - [ ] It should render an element with the `className` of `logout-button` that calls the `logoutUser` function when clicked.
-        - [ ] That function should remove the `lifetracker_token` from local storage and refresh the page so that all user data is reset.
+    - [x] If a valid user is logged in:
+      - [x] It should render an element with the `className` of `logout-button` that calls the `logoutUser` function when clicked.
+        - [x] That function should remove the `lifetracker_token` from local storage and refresh the page so that all user data is reset.
     - [x] If no valid user is logged in:
       - [x] It should render a `Link` element that redirects to the `/login` route with the label `Login`
       - [x] It should render a `Link` element that redirects to the `/register` route with the label `Sign Up`
@@ -261,166 +261,166 @@ The components in the `App.jsx` file should render the following components (alo
       - [x] Render a brief blurb on what this application is about inside an element with the `className` of `cta`
     - [x] Should allow unauthenticated access
 
-  - [ ] The **`activity`** context
+  - [x] The **`activity`** context
 
-    - [ ] Create a file in the `contexts directory - `/contexts/activity.jsx`
-    - [ ] In that file, define a new `ActivityContext` with `React.createContext`
-    - [ ] Use that context to create an `ActivityContextProvider` component
-      - [ ] The `ActivityContextProvider` component should create state variables and updaters needed for `activity`, `initialized`, `isLoading`, and `error`.
-      - [ ] It should call the `useAuthContext` hook and check to see if a valid user is logged in.
-      - [ ] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
-        - [ ] That hook should check to see if a user is logged in.
-        - [ ] If a user is logged in...
-          - [ ] Set the `isLoading` state variable to `true` and the `error` state variable to `null`
-          - [ ] Then, it should make a `GET` request to the `/activity` endpoint
-            - [ ] If there is an error with the request, it should set a message as the `error` state variable
-            - [ ] If all goes well...
-              - [ ] It should set the data as the `activity` state variable
-              - [ ] It should set the `error` state variable to `null`
-          - [ ] Regardless, at the end, set the `isLoading` state variable to `false` and the `initialized` state variable to `true`
-      - [ ] Make sure to pass an object containing all the state variables to the `value` prop of the `ActivityContext.Provider` component
-    - [ ] Create and export a `useActivityContext` hook that calls the `React.useContext` hook with the newly created `ActivityContext` and returns it.
-    - [ ] In the `App.jsx` file, nest the `ActivityContextProvider` inside the `AuthContextProvider`.
+    - [x] Create a file in the `contexts directory - `/contexts/activity.jsx`
+    - [x] In that file, define a new `ActivityContext` with `React.createContext`
+    - [x] Use that context to create an `ActivityContextProvider` component
+      - [x] The `ActivityContextProvider` component should create state variables and updaters needed for `activity`, `initialized`, `isLoading`, and `error`.
+      - [x] It should call the `useAuthContext` hook and check to see if a valid user is logged in.
+      - [x] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
+        - [x] That hook should check to see if a user is logged in.
+        - [x] If a user is logged in...
+          - [x] Set the `isLoading` state variable to `true` and the `error` state variable to `null`
+          - [x] Then, it should make a `GET` request to the `/activity` endpoint
+            - [x] If there is an error with the request, it should set a message as the `error` state variable
+            - [x] If all goes well...
+              - [x] It should set the data as the `activity` state variable
+              - [x] It should set the `error` state variable to `null`
+          - [x] Regardless, at the end, set the `isLoading` state variable to `false` and the `initialized` state variable to `true`
+      - [x] Make sure to pass an object containing all the state variables to the `value` prop of the `ActivityContext.Provider` component
+    - [x] Create and export a `useActivityContext` hook that calls the `React.useContext` hook with the newly created `ActivityContext` and returns it.
+    - [x] In the `App.jsx` file, nest the `ActivityContextProvider` inside the `AuthContextProvider`.
 
-  - [ ] The **`ActivityPage.jsx`** component:
+  - [x] The **`ActivityPage.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `activity-page`
-    - [ ] It should call the `useActivityContext` hook and extract all the necessary data from it.
-    - [ ] If the `isProcessing` flag is `true`, it should render the `Loading.jsx` component
-    - [ ] If the `isProcessing` flag is `false`, it should render the `ActivityFeed.jsx` component and pass it the appropriate props
+    - [x] Should render JSX that is wrapped by an element with the `className` of `activity-page`
+    - [x] It should call the `useActivityContext` hook and extract all the necessary data from it.
+    - [x] If the `isProcessing` flag is `true`, it should render the `Loading.jsx` component
+    - [x] If the `isProcessing` flag is `false`, it should render the `ActivityFeed.jsx` component and pass it the appropriate props
 
-  - [ ] The **`ActivityFeed.jsx`** component:
+  - [x] The **`ActivityFeed.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `activity-feed`
-    - [ ] Should accept **at least** the following props:
-      - [ ] `totalCaloriesPerDay` - an array of items containing summary data about the total calories consumed per day
-      - [ ] `avgCaloriesPerCategory` - an array of items containing summary data about the average calories consumed per category
-      - [ ] Any other
-    - [ ] Inside an element with the `className` of `per-category`, it should:
-      - [ ] Render the text: `"Average Calories Per Category` inside an `h4` element
-      - [ ] Take the first `6` or less items in the `avgCaloriesPerCategory` array and render a `SummaryStat.jsx` component for each item.
-        - [ ] It should pass the calories **rounded down to one decimal place** as the `stat` prop
-        - [ ] It should pass the string of `calories` as the `label` prop
-        - [ ] It should pass the `category` as the `substat` prop
-    - [ ] Inside an element with the `className` of `per-day`, it should:
-      - [ ] Render the text: `"Total Calories Per Day` inside an `h4` element
-      - [ ] For each item in the `totalCaloriesPerDay` array, it should render a `SummaryStat.jsx` component.
-        - [ ] It should pass the calories **rounded down to the nearest whole number** as the `stat` prop
-        - [ ] It should pass the string of `calories` as the `label` prop
-        - [ ] It should pass the `date` in the format `dd/mm/yyyy` - example: `07/02/2022` - as the `substat` prop
+    - [x] Should render JSX that is wrapped by an element with the `className` of `activity-feed`
+    - [x] Should accept **at least** the following props:
+      - [x] `totalCaloriesPerDay` - an array of items containing summary data about the total calories consumed per day
+      - [x] `avgCaloriesPerCategory` - an array of items containing summary data about the average calories consumed per category
+      - [x] Any other
+    - [x] Inside an element with the `className` of `per-category`, it should:
+      - [x] Render the text: `"Average Calories Per Category` inside an `h4` element
+      - [x] Take the first `6` or less items in the `avgCaloriesPerCategory` array and render a `SummaryStat.jsx` component for each item.
+        - [x] It should pass the calories **rounded down to one decimal place** as the `stat` prop
+        - [x] It should pass the string of `calories` as the `label` prop
+        - [x] It should pass the `category` as the `substat` prop
+    - [x] Inside an element with the `className` of `per-day`, it should:
+      - [x] Render the text: `"Total Calories Per Day` inside an `h4` element
+      - [x] For each item in the `totalCaloriesPerDay` array, it should render a `SummaryStat.jsx` component.
+        - [x] It should pass the calories **rounded down to the nearest whole number** as the `stat` prop
+        - [x] It should pass the string of `calories` as the `label` prop
+        - [x] It should pass the `date` in the format `dd/mm/yyyy` - example: `07/02/2022` - as the `substat` prop
 
-  - [ ] The **`SummaryStat.jsx`** component:
+  - [x] The **`SummaryStat.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `summary-stat`
-    - [ ] Should accept **at least** the following props:
-      - [ ] `stat` - the primary statistic to display
-      - [ ] `label` - the unit label assigned to the statistic
-      - [ ] `substat` - a secondary statistic related to the primary statistic
-    - [ ] It should render the `stat` prop inside an element with the `className` of `primary-statistic`
-    - [ ] It should render the `label` prop inside an element with the `className` of `stat-label`
-    - [ ] It should render the `substat` prop inside an element with the `className` of `secondary-statistic`
+    - [x] Should render JSX that is wrapped by an element with the `className` of `summary-stat`
+    - [x] Should accept **at least** the following props:
+      - [x] `stat` - the primary statistic to display
+      - [x] `label` - the unit label assigned to the statistic
+      - [x] `substat` - a secondary statistic related to the primary statistic
+    - [x] It should render the `stat` prop inside an element with the `className` of `primary-statistic`
+    - [x] It should render the `label` prop inside an element with the `className` of `stat-label`
+    - [x] It should render the `substat` prop inside an element with the `className` of `secondary-statistic`
 
-  - [ ] The **`nutrition`** context
+  - [x] The **`nutrition`** context
 
-    - [ ] Create a file in the `contexts directory - `/contexts/nutrition.jsx`
-    - [ ] In that file, define a new `NutritionContext` with `React.createContext`
-    - [ ] Use that context to create a `NutritionContextProvider` component
-      - [ ] The `NutritionContextProvider` component should create state variables and updaters needed for `nutritions`, `initialized`, `isLoading`, and `error`.
-      - [ ] It should call the `useAuthContext` hook and check to see if a valid user is logged in.
-      - [ ] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
-        - [ ] That hook should check to see if a user is logged in.
-        - [ ] If a user is logged in...
-          - [ ] Set the `isLoading` state variable to `true`
-          - [ ] Then, it should make a `GET` request to the `/nutritions` endpoint
-            - [ ] If there is an error with the request, it should set a message as the `error` state variable
-            - [ ] If all goes well:
-              - [ ] It should set the data as the `nutritions` state variable
-          - [ ] Regardless, at the end, set the `isLoading` state variable to `false` and the `initialized` state variable to `true`
-      - [ ] Make sure to pass an object containing all the state variables to the `value` prop of the `NutritionContext.Provider` component
-    - [ ] Create and export a `useNutritionContext` hook that calls the `React.useContext` hook with the newly created `NutritionContext` and returns it.
+    - [x] Create a file in the `contexts directory - `/contexts/nutrition.jsx`
+    - [x] In that file, define a new `NutritionContext` with `React.createContext`
+    - [x] Use that context to create a `NutritionContextProvider` component
+      - [x] The `NutritionContextProvider` component should create state variables and updaters needed for `nutritions`, `initialized`, `isLoading`, and `error`.
+      - [x] It should call the `useAuthContext` hook and check to see if a valid user is logged in.
+      - [x] It should have a `React.useEffect` hook that fires when the component is mounted to the screen
+        - [x] That hook should check to see if a user is logged in.
+        - [x] If a user is logged in...
+          - [x] Set the `isLoading` state variable to `true`
+          - [x] Then, it should make a `GET` request to the `/nutritions` endpoint
+            - [x] If there is an error with the request, it should set a message as the `error` state variable
+            - [x] If all goes well:
+              - [x] It should set the data as the `nutritions` state variable
+          - [x] Regardless, at the end, set the `isLoading` state variable to `false` and the `initialized` state variable to `true`
+      - [x] Make sure to pass an object containing all the state variables to the `value` prop of the `NutritionContext.Provider` component
+    - [x] Create and export a `useNutritionContext` hook that calls the `React.useContext` hook with the newly created `NutritionContext` and returns it.
 
-  - [ ] The **`NutritionPage.jsx`** component:
+  - [x] The **`NutritionPage.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `nutrition-page`
-    - [ ] Should render a nested `Routes` component from `react-router-dom`.
-      - [ ] There should be multiple `Route` components:
-        - [ ] The `/nutrition` route should render the `NutritionOverview.jsx` component
-        - [ ] The `/nutrition/create` route should render the `NutritionNew.jsx` component
-        - [ ] The `/nutrition/id/:nutritionId` should render the `NutritionDetail.jsx` component
-        - [ ] Any other route should render the `NotFound` component
+    - [x] Should render JSX that is wrapped by an element with the `className` of `nutrition-page`
+    - [x] Should render a nested `Routes` component from `react-router-dom`.
+      - [x] There should be multiple `Route` components:
+        - [x] The `/nutrition` route should render the `NutritionOverview.jsx` component
+        - [x] The `/nutrition/create` route should render the `NutritionNew.jsx` component
+        - [x] The `/nutrition/id/:nutritionId` should render the `NutritionDetail.jsx` component
+        - [x] Any other route should render the `NotFound` component
 
-  - [ ] The **`NutritionOverview.jsx`** component:
+  - [x] The **`NutritionOverview.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `nutrition-overview`
-    - [ ] It should call the `useNutritionContext` hook and extract all the necessary data from it.
-      - [ ] If the `error` state variable has a valid string in it, it should render the `error` message inside an element with the `className` of `error`
-      - [ ] If the `isLoading` boolean is `true`, it should render the `Loading.jsx` component
-      - [ ] If the `isLoading` boolean is `false`, it should render the `NutritionFeed.jsx` component and pass it the appropriate props
-    - [ ] Near the top of the component, it should render a `Link` component that directs to the `/nutrition/create` route and contains the text: `"Record Nutrition"`
+    - [x] Should render JSX that is wrapped by an element with the `className` of `nutrition-overview`
+    - [x] It should call the `useNutritionContext` hook and extract all the necessary data from it.
+      - [x] If the `error` state variable has a valid string in it, it should render the `error` message inside an element with the `className` of `error`
+      - [x] If the `isLoading` boolean is `true`, it should render the `Loading.jsx` component
+      - [x] If the `isLoading` boolean is `false`, it should render the `NutritionFeed.jsx` component and pass it the appropriate props
+    - [x] Near the top of the component, it should render a `Link` component that directs to the `/nutrition/create` route and contains the text: `"Record Nutrition"`
 
-  - [ ] The **`NutritionFeed.jsx`** component:
+  - [x] The **`NutritionFeed.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `nutrition-feed`
-    - [ ] It should receive **at least** the following props:
-      - [ ] `nutritions` - an array of `nutrition` items
-    - [ ] If the `nutritions` array has no items in it, it should render an empty message that says `Nothing here yet` inside an element with the `className` of `empty-message`
-    - [ ] If the `nutritions` array does have items in it:
-      - [ ] For each item in the `nutritions` array, it should render a `NutritionCard.jsx` component
+    - [x] Should render JSX that is wrapped by an element with the `className` of `nutrition-feed`
+    - [x] It should receive **at least** the following props:
+      - [x] `nutritions` - an array of `nutrition` items
+    - [x] If the `nutritions` array has no items in it, it should render an empty message that says `Nothing here yet` inside an element with the `className` of `empty-message`
+    - [x] If the `nutritions` array does have items in it:
+      - [x] For each item in the `nutritions` array, it should render a `NutritionCard.jsx` component
 
-  - [ ] The **`NutritionNew.jsx`** component:
+  - [x] The **`NutritionNew.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `nutrition-new`
-    - [ ] Should render the `NutritionForm.jsx` component and pass it the appropriate props
+    - [x] Should render JSX that is wrapped by an element with the `className` of `nutrition-new`
+    - [x] Should render the `NutritionForm.jsx` component and pass it the appropriate props
 
-  - [ ] The **`NutritionForm.jsx`** component:
+  - [x] The **`NutritionForm.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `nutrition-form`
-    - [ ] Should render an input element for the following fields:
-      - [ ] `name` - name of the nutrition item (defaults to an empty string)
-      - [ ] `calories` - number of calories in the nutrition item (defaults to 1)
-      - [ ] `imageUrl` - the `url` of an image to show for this nutrition item (defaults to an empty string)
-      - [ ] `category` - the category that this nutrition item belongs to, like fruit, meat, soda, snack, nuts, etc. (defaults to an empty string)
-    - [ ] Each `input` element in the form should have a `className` of `form-input` and should have the following props set:
-      - [ ] `name` - the `name` of the `input` field being rendered (`name`, `calories`, `imageUrl`, `category`)
-      - [ ] `type` - the type of the `input` element (`text`, `email`, `number`, etc)
-      - [ ] `value` - the current value of the `input` element
-      - [ ] `onChange` - the `onChange` handler function
-    - [ ] The component should gracefully handle errors:
-      - [ ] If any of the required fields are left blank, there should be an error message inside of an element with the `className` of `error` indicating which fields are required.
-      - [ ] If the user has attempted to create a nutrition entry and gotten a `400` or `422` error, then that message should be displayed inside an element with the `className` of `error`
-    - [ ] There should be a `button` element with the `className` of `submit-nutrition`:
-      - [ ] It should contain the text `"Save"`
-      - [ ] When clicked, it should call a function that creates a new nutrition entry
-    - [ ] After the form has been succesfully submitted:
-      - [ ] Ensure that the new nutrition entry is stored in the `nutrition` context's `nutritions` array and is displayed in the `NutritionFeed.jsx` component
-      - [ ] Refetch the `activity` data so that new summary stats will be calculated
+    - [x] Should render JSX that is wrapped by an element with the `className` of `nutrition-form`
+    - [x] Should render an input element for the following fields:
+      - [x] `name` - name of the nutrition item (defaults to an empty string)
+      - [x] `calories` - number of calories in the nutrition item (defaults to 1)
+      - [x] `imageUrl` - the `url` of an image to show for this nutrition item (defaults to an empty string)
+      - [x] `category` - the category that this nutrition item belongs to, like fruit, meat, soda, snack, nuts, etc. (defaults to an empty string)
+    - [x] Each `input` element in the form should have a `className` of `form-input` and should have the following props set:
+      - [x] `name` - the `name` of the `input` field being rendered (`name`, `calories`, `imageUrl`, `category`)
+      - [x] `type` - the type of the `input` element (`text`, `email`, `number`, etc)
+      - [x] `value` - the current value of the `input` element
+      - [x] `onChange` - the `onChange` handler function
+    - [x] The component should gracefully handle errors:
+      - [x] If any of the required fields are left blank, there should be an error message inside of an element with the `className` of `error` indicating which fields are required.
+      - [x] If the user has attempted to create a nutrition entry and gotten a `400` or `422` error, then that message should be displayed inside an element with the `className` of `error`
+    - [x] There should be a `button` element with the `className` of `submit-nutrition`:
+      - [x] It should contain the text `"Save"`
+      - [x] When clicked, it should call a function that creates a new nutrition entry
+    - [x] After the form has been succesfully submitted:
+      - [x] Ensure that the new nutrition entry is stored in the `nutrition` context's `nutritions` array and is displayed in the `NutritionFeed.jsx` component
+      - [x] Refetch the `activity` data so that new summary stats will be calculated
 
-  - [ ] The **`NutritionDetail.jsx`** component:
+  - [x] The **`NutritionDetail.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `nutrition-detail`
-    - [ ] It should leverage the `useParams` hook from `react-router-dom` to extract the `nutritionId` param from the url
-    - [ ] When the component is mounted to the screen...
-      - [ ] It should make a `GET` request to the `/nutrition/:nutritionId` endpoint with the `axios.get` method.
-      - [ ] The `:nutritionId` part of the request should be replaced with the `nutritionId` pulled from the url.
-      - [ ] When the initial request is loading, it should render an `h1` element with the `className` of `loading` and contain the text `"Loading..."`
-      - [ ] It should store the `nutrition` received by the request in state and then render a `NutritionCard.jsx` component for that nutrition.
-      - [ ] If no `nutrition` is found with that `id`, it should render the `NotFound.jsx` component
+    - [x] Should render JSX that is wrapped by an element with the `className` of `nutrition-detail`
+    - [x] It should leverage the `useParams` hook from `react-router-dom` to extract the `nutritionId` param from the url
+    - [x] When the component is mounted to the screen...
+      - [x] It should make a `GET` request to the `/nutrition/:nutritionId` endpoint with the `axios.get` method.
+      - [x] The `:nutritionId` part of the request should be replaced with the `nutritionId` pulled from the url.
+      - [x] When the initial request is loading, it should render an `h1` element with the `className` of `loading` and contain the text `"Loading..."`
+      - [x] It should store the `nutrition` received by the request in state and then render a `NutritionCard.jsx` component for that nutrition.
+      - [x] If no `nutrition` is found with that `id`, it should render the `NotFound.jsx` component
 
-  - [ ] The **`NutritionCard.jsx`** component:
+  - [x] The **`NutritionCard.jsx`** component:
 
-    - [ ] Should render JSX that is wrapped by an element with the `className` of `nutrition-card`
-    - [ ] Should accept **at least** the following props:
-      - [ ] `nutrition` - should be a nutrition entry object containing the following attributes:
-        - [ ] `imageUrl` - (not required)
-        - [ ] `name` - (required)
-        - [ ] `calories` - (required)
-        - [ ] `category` - (required)
-        - [ ] `createdAt` - (required)
-    - [ ] It should render the `name` of the `nutrition` entry inside an element with the `className` of `nutrition-name`
-    - [ ] If the `nutrition` entry has a valid `imageUrl` attribute, it should render an `img` element with the `className` of `nutrition-image` and use that `imageUrl` as its `src`
-    - [ ] It should render the `calories` attribute of the `nutrition` entry inside an element with the `className` of `nutrition-calories`
-    - [ ] It should render the `category` attribute of the `nutrition` entry inside an element with the `className` of `nutrition-category`
-    - [ ] It should render the `createdAt` attribute of the `nutrition` entry in the format `dd/mm/yyyy` - example: `07/02/2022` - inside an element with the `className` of `nutrition-date`.
+    - [x] Should render JSX that is wrapped by an element with the `className` of `nutrition-card`
+    - [x] Should accept **at least** the following props:
+      - [x] `nutrition` - should be a nutrition entry object containing the following attributes:
+        - [x] `imageUrl` - (not required)
+        - [x] `name` - (required)
+        - [x] `calories` - (required)
+        - [x] `category` - (required)
+        - [x] `createdAt` - (required)
+    - [x] It should render the `name` of the `nutrition` entry inside an element with the `className` of `nutrition-name`
+    - [x] If the `nutrition` entry has a valid `imageUrl` attribute, it should render an `img` element with the `className` of `nutrition-image` and use that `imageUrl` as its `src`
+    - [x] It should render the `calories` attribute of the `nutrition` entry inside an element with the `className` of `nutrition-calories`
+    - [x] It should render the `category` attribute of the `nutrition` entry inside an element with the `className` of `nutrition-category`
+    - [x] It should render the `createdAt` attribute of the `nutrition` entry in the format `dd/mm/yyyy` - example: `07/02/2022` - inside an element with the `className` of `nutrition-date`.
 
   - [ ] DO THE SAME FOR ANY OTHER RESOURCE THAT IS IN THE APPLICATION
 
@@ -576,15 +576,15 @@ Here are the pieces of functionality that should be built out for the backend:
         - [ ] A valid email returns a user from the database
         - [ ] Invalid emails are handled correctly
       - [ ] It will probably be important to use the `beforeAll`, `afterAll`, `beforeEach`, and `afterEach` hooks to add and delete users from the database before running the tests
-    - [ ] In the `models/user.js` file:
-      - [ ] Import the `bcrypt` package, the `db` client, and the app `config`.
-      - [ ] Implement the features outlined in the tests until they're all passing.
+    - [x] In the `models/user.js` file:
+      - [x] Import the `bcrypt` package, the `db` client, and the app `config`.
+      - [x] Implement the features outlined in the tests until they're all passing.
   - [ ] Commit all work to `git`
-  - [ ] The **tokens** utility functions
-    - [ ] In the `utils` directory, create two new files: `utils/tokens.js` and `utils/tokens.test.js`
-      - [ ] At the bare minimum, two functions will be needed:
-        - [ ] One that accepts a JSON payload as an argument and converts it into a JWT
-        - [ ] One that accepts a JWT as an argument, validates it, and returns the JSON payload encoded within - if it's valid
+  - [x] The **tokens** utility functions
+    - [x] In the `utils` directory, create two new files: `utils/tokens.js` and `utils/tokens.test.js`
+      - [x] At the bare minimum, two functions will be needed:
+        - [x] One that accepts a JSON payload as an argument and converts it into a JWT
+        - [x] One that accepts a JWT as an argument, validates it, and returns the JSON payload encoded within - if it's valid
     - [ ] In the `utils/tokens.test.js` file:
       - [ ] Write test cases for:
         - [ ] Can create valid JWT tokens for user payloads
