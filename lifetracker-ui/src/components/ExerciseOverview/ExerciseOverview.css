@@ -1,0 +1,25 @@
+.exercise-overview {
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise-overview .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exercise-overview .header h3 {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+}
+
+.exercise-overview a {
+    text-decoration: none;
+}
+
+.add-btn {
+    cursor: pointer;
+}

@@ -4,7 +4,7 @@ class Nutrition {
 
     static async createNutrition(creds) {
         //required fields are email and password, throw error if either are missing
-        const requiredFields = ['name', 'category', 'calories', 'imageUrl', 'user_id']
+        const requiredFields = ['name', 'category', 'quantity' ,'calories', 'imageUrl', 'user_id']
         requiredFields.forEach(field => {
             if (!creds.hasOwnProperty(field)) {
                 throw new BadRequestError(`Missing ${field} in request body.`)
@@ -20,12 +20,13 @@ class Nutrition {
                 category,
                 calories,
                 image_url,
-                user_id
+                user_id,
+                quantity
             )
-            VALUES ($1, $2, $3, $4, $5)
-            RETURNING id, name, category, calories, image_url, user_id, created_at;
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING id, name, category, calories, image_url, user_id, created_at, quantity;
         `,
-        [creds.name, creds.category, creds.calories , creds.imageUrl, creds.user_id]
+        [creds.name, creds.category, creds.calories , creds.imageUrl, creds.user_id, creds.quantity]
         )
 
         return result.rows[0]

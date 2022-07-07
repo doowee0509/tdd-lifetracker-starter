@@ -2,11 +2,12 @@ import * as React from "react"
 import "./NutritionCard.css"
 
 export default function NutritionCard({nutrition}) {
-
+    const source = nutrition.imageUrl ? nutrition.imageUrl : "https://t4.ftcdn.net/jpg/01/15/52/31/360_F_115523122_e4ry4EKsouP9kl2auNN1wSREoJq3kdcE.jpg"
     return (
         <div className="nutrition-card">
             <div className="card-header">
-                <img src="https://static1.personality-database.com/profile_images/7e516ec0502f4fb7ae79fe1722228994.png" alt="nutrition image" className="nutrition-image" />
+                
+                <img src={source} alt="nutrition image" className="nutrition-image" />
                 <h2 className="title nutrition-name">
                     {nutrition.name}
                 </h2>
@@ -18,7 +19,7 @@ export default function NutritionCard({nutrition}) {
                 </div>
                 <div className="card-stat">
                     <p>Quantity</p>
-                    <span className="nutrition-quantity">{1}</span>
+                    <span className="nutrition-quantity">{nutrition.quantity}</span>
                 </div>
             </div>
             <div className="card-meta">

@@ -104,7 +104,7 @@ export default function RegistrationForm() {
         <div className="registration-form">
             <div className="card">
                 <h2>Register</h2>
-                {(error?.form !== null) ? <span className="error">{error?.form}</span> : null}
+                {(error?.form) ? <span className="error">{error?.form}</span> : null}
                 <br />
                 <div className="form">
                     <div className="input-field">

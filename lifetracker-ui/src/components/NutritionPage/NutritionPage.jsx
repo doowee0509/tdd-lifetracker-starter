@@ -51,8 +51,8 @@ function NutritionPage() {
             <div className="content">
                 <Routes>
                     <Route path="/" element={<NutritionOverview />}/>
-                    <Route path="/nutrition/create" element={<NutritionNew />} />
-                    <Route path="/nutrition/id/:nutritionId" element={<NutritionDetail />} />
+                    <Route path="/create" element={<NutritionNew />} />
+                    <Route path="/id/:nutritionId" element={<NutritionDetail />} />
                     <Route path="*" element={<NotFound />}/>
                 </Routes>
             </div>

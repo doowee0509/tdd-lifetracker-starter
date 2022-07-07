@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useState } from "react"
 import "./LoginForm.css"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import apiClient from "../../services/apiClient"
 import { useAuthContext } from "../../contexts/auth"
 
@@ -14,13 +14,17 @@ export default function LoginForm(props) {
         password: "",
     })
     const navigate = useNavigate()
+    const location = useLocation()
+
+    console.log(error)
 
     React.useEffect(() => {
         // if user is already logged in,
         // redirect them to the home page
-        
+        const link = location?.state?.link ? location?.state?.link : "/activity"
+        console.log(link)
         if (user?.email) {
-            navigate("/activity")
+            navigate(link)
         }
     }, [user, navigate])
 
@@ -39,14 +43,14 @@ export default function LoginForm(props) {
     const handleOnSubmit = async (e) => {
         e.preventDefault()
         setIsLoading(true)
-        setError((e) => ({ ...e, form: null }))
+        setError((e) => ({ ...e, loginForm: null }))
     
         const {data, error} = await apiClient.loginUser({
             email: form.email,
             password: form.password,
         })
         
-        if (error) setError((e) => ({ ...e, form: error }))
+        if (error) setError((e) => ({ ...e, loginForm: error }))
 
         if (data?.user) {
             apiClient.setToken(data.token)
@@ -59,7 +63,7 @@ export default function LoginForm(props) {
         <div className="login-form">
             <div className="card">
                 <h2>Login</h2>
-                {(error?.form?.includes("AxiosError")) ? <span className="error">Invalid email/password</span> : null}
+                {(error?.loginForm) ? <span className="error">Invalid email/password</span> : null}
                 {(props.link) ? <span className="error">You must be logged in to access that page</span> : null}
                 <br />
                 <div className="form">

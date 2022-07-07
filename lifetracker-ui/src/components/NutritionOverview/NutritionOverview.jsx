@@ -11,7 +11,7 @@ export default function NutritionOverview() {
         <div className="nutrition-overview">
             <div className="header">
                 <h3>Overview</h3>
-                <Link to="nutrition/create">
+                <Link to="create">
                     <button className="add-btn outline small aqua">
                         Record Nutrition
                     </button>

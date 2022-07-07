@@ -1,21 +1,20 @@
 import * as React from "react"
-import "./NutritionForm.css"
-import { useNutritionContext } from "../../contexts/nutrition"
+import "./ExerciseForm.css"
+import { useExerciseContext } from "../../contexts/exercise"
 import { useAuthContext } from "../../contexts/auth"
 import apiClient from "../../services/apiClient"
 import { useNavigate } from "react-router-dom"
 
 export default function NutritionForm() {
-    const {isLoading, setIsLoading, setError, nutritions, setNutritions} = useNutritionContext()
+    const {isLoading, setIsLoading, setError, exercises, setExercises} = useExerciseContext()
     const {user} = useAuthContext()
     const navigate = useNavigate()
     const [form, setForm] = React.useState({
         name: "",
         category: "",
+        quantity: 1,
         user_id: user.id,
-        quantity: 0,
-        calories: 0,
-        imageUrl: ""
+        intensity: 1,
     })
 
     const handleOnInputChange = (event) => {
@@ -27,51 +26,46 @@ export default function NutritionForm() {
         setIsLoading(true)
         setError((e) => ({ ...e, form: null }))
 
-        const {data, error} = await apiClient.createNutrition({
+        const {data, error} = await apiClient.createExercise({
                     name: form.name,
                     category: form.category,
                     quantity: form.quantity,
-                    calories: form.calories,
-                    imageUrl: form.imageUrl,
+                    intensity: form.intensity,
                     user_id: user.id
                 })
                 
         if (error) setError((e) => ({ ...e, form: error }))
-        if (data?.nutrition) {
-            setNutritions([...nutritions, data.nutrition])
-            navigate("/nutrition")
+        if (data?.exercise) {
+            setExercises([...exercises, data.exercise])
+            navigate("/exercise")
         }
         
         setIsLoading(false)
     }
 
     return (
-        <div className="nutrition-form">
+        <div className="exercise-form">
             <div className="input-field">
                 <label htmlFor="name">Name</label>
-                <input type="text" name="name" placeholder="Nutrition name" value={form.name} onChange={handleOnInputChange}/>
+                <input type="text" name="name" placeholder="Exercise name" value={form.name} onChange={handleOnInputChange}/>
             </div>
             <div className="input-field">
                 <label htmlFor="category">Category</label>
-                <input type="text" name="category" placeholder="Category name" value={form.category} onChange={handleOnInputChange}/>
+                <input type="text" name="category" placeholder="Exercise category" value={form.category} onChange={handleOnInputChange}/>
             </div>
             <div className="split-input-field">
                 <div className="input-field">
-                    <label htmlFor="quantity">Quantity</label>
+                    <label htmlFor="duration">Duration (min)</label>
                     <input type="number" name="quantity" placeholder="Quantity" value={form.quantity} onChange={handleOnInputChange}/>
                 </div>
                 <div className="input-field">
-                    <label htmlFor="calories">Calories</label>
-                    <input type="number" name="calories" placeholder="Calories" value={form.calories} onChange={handleOnInputChange}/>
+                    <label htmlFor="intensity">Intensity (1-10)</label>
+                    <input type="number" name="intensity" placeholder={1} value={form.intensity} onChange={handleOnInputChange}/>
                 </div>
             </div>
-            <div className="input-field">
-                <label htmlFor="imageUrl">Image Url</label>                
-                <input type="text" name="imageUrl" placeholder="http://www.food-image.com/1" value={form.imageUrl} onChange={handleOnInputChange}/>
-                <button className="save-btn submit-nutrition" disabled={isLoading} onClick={handleOnSubmit}>
-                        {isLoading ? "Loading..." : "Save"}
-                </button>
-            </div>
+            <button className="save-btn submit-exercise" disabled={isLoading} onClick={handleOnSubmit}>
+                    {isLoading ? "Loading..." : "Save"}
+            </button>
         </div>
     )
 }
