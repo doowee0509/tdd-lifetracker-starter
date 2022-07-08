@@ -65,3 +65,7 @@
     display: flex;
     gap: 20px;
 }
+
+.per-category h4 ,.per-day h4 {
+    color: var(--codepath-dark);
+}

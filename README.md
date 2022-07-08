@@ -3,7 +3,7 @@
 
 Submitted by: **Duy Nguyen**
 
-Deployed Application: [Lifetracker Deployed Site](https://deafening-day.surge.sh/)
+Deployed Application: [Lifetracker Deployed Site](https://rich-front.surge.sh/)
 
 ## Overview
 > Data is the new oil - Clive Humbly
@@ -29,15 +29,15 @@ This application will be built using the battle-tested PERN stack - PostgreSQL, 
 - [x] Deployed website with Heroku & Surge. 
 
 **Detailed Activity Page:**
-- [ ] The detailed activity page should display a feed of all previous tracked activities.
-- [ ] The detailed activity should contain a form to contain relevant information. (i.e if tracking nutrition this form allows the user to capture calories, timestamp, image, category, etc.) 
-- [ ] The activity tracked should be given a unique id for easy lookup.
+- [x] The detailed activity page should display a feed of all previous tracked activities.
+- [x] The detailed activity should contain a form to contain relevant information. (i.e if tracking nutrition this form allows the user to capture calories, timestamp, image, category, etc.) 
+- [x] The activity tracked should be given a unique id for easy lookup.
   * [Table Schema](https://github.com/doowee0509/tdd-lifetracker-starter/blob/main/lifetracker-api/lifetracker-schema.sql) 
 
 ### Stretch Features
 
 Implement any of the following features to improve the application:
-- [ ] Each model (`nutrition`, `exercise`, and `sleep`) should also implement a `fetchById` method that queries the database for a record by its id and only serves it to users who own that resource. Create a new dynamic route on the frontend that displays detail about a single record. For instance, `nutrition/detail/:id` should show a page with all the information about a single nutrition item.
+- [x] Each model (`nutrition`, `exercise`, and `sleep`) should also implement a `fetchById` method that queries the database for a record by its id and only serves it to users who own that resource. Create a new dynamic route on the frontend that displays detail about a single record. For instance, `nutrition/detail/:id` should show a page with all the information about a single nutrition item.
 - [ ] Provide a dropdown that allows users to filter activity based on a certain attribute of any activity item.
 - [ ] Calculate aggregate statistics based on time periods - such as daily, weekly, monthly aggregates.
 - [ ] Create a page that shows all other users that use the life tracker application and allow users to follow each other.
@@ -51,7 +51,7 @@ Implement any of the following features to improve the application:
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Kinda, some features like the security middleware are not yet covered in this week's labs so it takes longer time to learn and complete that feature.
+Yes, the labs content this week prepared me to finish this project strong, especially learning about user persistant. 
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
@@ -59,7 +59,7 @@ If I had more time I would add more to the UI, I focused a lot on the backend so
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-I think all the features that I was able to finished went well, there's no errors on the back side of the website so I can start by implementing new features anytime. 
+I think all the features that I was able to finished went well there are some stretch featurs like the dropdown to help sort the detailed activity page that I would like to try.
 
 ### Open-source libraries used
 
@@ -75,14 +75,14 @@ I want to shout out to both of my pod mates for being an amazing pod mates, they
 
 Building this application you will accomplish the following:
 
-- [ ] Develop a full-fledged authentication system using PostgreSQL and Bcrypt
-- [ ] Provide users with an Express API they can interact with to store user-related activity
-- [ ] Construct multiple Models that implement the core business logic associated with tracking users' lives
-- [ ] Write SQL queries that aggregate user statistics and provide summary overviews about their activity
-- [ ] Design a React frontend that interacts with the API using an API service class
-- [ ] Build multiple pages and forms that communicate with the server using HTTP requests
-- [ ] Store user-authenticated JWT tokens in the browser's local storage for persisted authentication
-- [ ] Employ useEffect and useState hooks to manage application state on the frontend
+- [x] Develop a full-fledged authentication system using PostgreSQL and Bcrypt
+- [x] Provide users with an Express API they can interact with to store user-related activity
+- [x] Construct multiple Models that implement the core business logic associated with tracking users' lives
+- [x] Write SQL queries that aggregate user statistics and provide summary overviews about their activity
+- [x] Design a React frontend that interacts with the API using an API service class
+- [x] Build multiple pages and forms that communicate with the server using HTTP requests
+- [x] Store user-authenticated JWT tokens in the browser's local storage for persisted authentication
+- [x] Employ useEffect and useState hooks to manage application state on the frontend
 
 ## Application Features
 
@@ -169,7 +169,7 @@ The components in the `App.jsx` file should render the following components (alo
 
 - To build out the front-end, start with the `App.jsx` component:
 
-  - [ ] **`App.jsx`**
+  - [x] **`App.jsx`**
     - [x] Should be wrapped by an element with the `className` of `app`
     - [x] The core App component that contains the routes for the app wrapped in Context providers
     - [x] Renders the `Navbar` component on every route
@@ -177,10 +177,10 @@ The components in the `App.jsx` file should render the following components (alo
       - [x] `/` - Should render the `Landing.jsx` component
       - [x] `/login` - Should render the `LoginPage.jsx` component
       - [x] `/register` - Should render the `RegistrationPage.jsx` component
-      - [ ] `/activity` - Should render the `ActivityPage.jsx` component (only if the user is logged in, otherwise it renders the `AccessForbidden.jsx` component)
+      - [x] `/activity` - Should render the `ActivityPage.jsx` component (only if the user is logged in, otherwise it renders the `AccessForbidden.jsx` component)
       - [x] `/nutrition/* - should render the `NutritionPage.jsx`component (only if the user is logged in, otherwise it renders the`AccessForbidden.jsx` component)
       - [x] `*` - anything else should render the `NotFound` component
-  - [ ] To standarize API requests throughout the application, set up an **`ApiClient`** class
+  - [x] To standarize API requests throughout the application, set up an **`ApiClient`** class
 
     - [ ] Start by creating a `constants.js` file at the root of the project
       - [ ] In it, export a few variables:
@@ -489,13 +489,13 @@ The components in the `App.jsx` file should render the following components (alo
 
     - [ ] Choose whatever resources you want!
 
-  - [ ] The **`ProtectedRoute.jsx`** component:
-    - [ ] Create a `ProtectedRoute.jsx` component that uses the `useAuthContext` hook to get access to the `initialized` and `user` variables.
-    - [ ] It should accept a component as the `element` prop and render that component.
-    - [ ] If the application isn't currently loading and no user is found, it should render the `LoginPage.jsx` component instead of rendering the route the user intended to go to. This way, we can ensure that only authenticated users can access the provided component.
-    - [ ] Any unauthenticated user should be shown the `LoginPage.jsx` component with a message indicating that they need to authenticate first
-    - [ ] Update the `LoginPage.jsx` component so that it accepts a `message` prop that is displayed in the login form - if it exists.
-    - [ ] Make sure to protect the entire `ActivityPage` component route and the `NutritionPage` component route (along with any other private resource pages). Don't protect the `LandingPage` component or the `LoginPage` and `RegistrationPage` components, as they should be public.
+  - [x] The **`ProtectedRoute.jsx`** component:
+    - [x] Create a `ProtectedRoute.jsx` component that uses the `useAuthContext` hook to get access to the `initialized` and `user` variables.
+    - [x] It should accept a component as the `element` prop and render that component.
+    - [x] If the application isn't currently loading and no user is found, it should render the `LoginPage.jsx` component instead of rendering the route the user intended to go to. This way, we can ensure that only authenticated users can access the provided component.
+    - [x] Any unauthenticated user should be shown the `LoginPage.jsx` component with a message indicating that they need to authenticate first
+    - [x] Update the `LoginPage.jsx` component so that it accepts a `message` prop that is displayed in the login form - if it exists.
+    - [x] Make sure to protect the entire `ActivityPage` component route and the `NutritionPage` component route (along with any other private resource pages). Don't protect the `LandingPage` component or the `LoginPage` and `RegistrationPage` components, as they should be public.
 
 ### API
 
@@ -708,7 +708,7 @@ Here are the pieces of functionality that should be built out for the backend:
       - [ ] Test the `POST /auth/me` endpoint
         - [ ] Write test cases for:
           - [ ] Provides the user with their user info when a valid JWT is present in the `Authentication` header of the request
-          - [ ] Throws an `UnauthorizedError` when no valid user is logged in
+          - [x] Throws an `UnauthorizedError` when no valid user is logged in
     - [x] In the `routes/auth.js` file:
       - [x] Create a new Express router
       - [x] Implement the features outlined in the tests until they're all passing
@@ -717,19 +717,19 @@ Here are the pieces of functionality that should be built out for the backend:
   - [x] Commit all work to `git`
   - [x] There should now be a full-fledged authentication system in place!
 - **Resources and Permissions**
-  - [ ] Next, implement the functionality to allow users to save instances of things they've drank/eaten, so that they can track their own nutrition data! Also make sure users can only access the data that they themselves have created. No other user should be able to see any data owned by another user!
-  - [ ] The **Nutrition** model
-    - [ ] In the `models` directory, create two new files: `models/nutrition.js` and `models/nutrition.test.js`
-      - [ ] The `Nutrition` model should have **at least** the following static methods:
-        - [ ] `createNutrition`
-          - [ ] Should insert a new nutrition instance into the database when values are supplied for all of the required fields: `"name"`, `"category"`, `"calories"`, and `"image_url"`. The `quantity` field should default to `1`.
-          - [ ] The new nutrition instance should have its `user_id` field set to the `id` of the authenticated user
-          - [ ] Should throw a `BadRequestError` (`400` status code) or `UnprocessableEntityError` (`422` status code) when any of those values are not supplied.
-        - [ ] `fetchNutritionById`
-          - [ ] When supplied with a valid `id`, fetches the a nutrition instance from the database that matches that `id`.
-          - [ ] If no nutrition instance matches that `id`, throws a `NotFoundError` (`404` status code)
-        - [ ] `listNutritionForUser`
-          - [ ] Should list all nutrition instances in the database that are owned by a particular user
+  - [x] Next, implement the functionality to allow users to save instances of things they've drank/eaten, so that they can track their own nutrition data! Also make sure users can only access the data that they themselves have created. No other user should be able to see any data owned by another user!
+  - [x] The **Nutrition** model
+    - [x] In the `models` directory, create two new files: `models/nutrition.js` and `models/nutrition.test.js`
+      - [x] The `Nutrition` model should have **at least** the following static methods:
+        - [x] `createNutrition`
+          - [x] Should insert a new nutrition instance into the database when values are supplied for all of the required fields: `"name"`, `"category"`, `"calories"`, and `"image_url"`. The `quantity` field should default to `1`.
+          - [x] The new nutrition instance should have its `user_id` field set to the `id` of the authenticated user
+          - [x] Should throw a `BadRequestError` (`400` status code) or `UnprocessableEntityError` (`422` status code) when any of those values are not supplied.
+        - [x] `fetchNutritionById`
+          - [x] When supplied with a valid `id`, fetches the a nutrition instance from the database that matches that `id`.
+          - [x] If no nutrition instance matches that `id`, throws a `NotFoundError` (`404` status code)
+        - [x] `listNutritionForUser`
+          - [x] Should list all nutrition instances in the database that are owned by a particular user
     - [ ] In the `models/nutrition.test.js` file:
       - [ ] Test the `createNutrition` method. Write test cases for:
         - [ ] A user can create a nutrition instance when they supply the appropriate values
@@ -742,9 +742,9 @@ Here are the pieces of functionality that should be built out for the backend:
         - [ ] Fetches all nutrition instances belonging to a particular user
         - [ ] Doesn't include any nutrition instances belonging to a different user
         - [ ] Returns an empty array if no nutrition instances are found in the database that belong to that user
-    - [ ] In the `models/nutrition.js` file:
-      - [ ] Implement the features outlined in the tests until they're all passing
-    - [ ] Commit all work to `git`
+    - [x] In the `models/nutrition.js` file:
+      - [x] Implement the features outlined in the tests until they're all passing
+    - [x] Commit all work to `git`
   - [ ] The **permissions** middleware
     - [ ] In the `middleware` directory, create two new files: `middleware/permissions.js` and `middleware/permissions.test.js`
       - [ ] Though more functions will need to be added here as the number of resources grows, for now only 1 function needs to be created.
@@ -765,16 +765,16 @@ Here are the pieces of functionality that should be built out for the backend:
     - [ ] In the `middleware/permissions.js` file:
       - [ ] Implement the features outlined in the tests until they're all passing
     - [ ] Commit all work to `git`
-  - [ ] The **/nutrition** routes
-    - [ ] In the `routes` directory, create two new files: `routes/nutrition.js` and `routes/nutrition.test.js`
-      - [ ] A new Express router should be created that will be mounted at the `/nutrition` endpoint. It should handle:
-        - [ ] `GET` requests to the `/` endpoint
-          - [ ] It should send a JSON response back to the client with all of the user-owned nutrition instances in an array like so: `{ "nutritions": [...] }`
-        - [ ] `POST` requests to the `/` endpoint
-          - [ ] It should accept a request body with one `nutrition` key containing an object with all the attributes of the `nutrition` entry
-          - [ ] It should send a JSON response back to the client with a `201` status code, and the newly created nutrition instance like so: `{ "nutrition": { ... } }`
-        - [ ] `GET` requests to the `/:nutritionId` endpoint
-          - [ ] It should send a JSON response back to the client with the nutrition instance that matches the `:nutritionId` parameter like so: `{ "nutrition": { ... } }`
+  - [x] The **/nutrition** routes
+    - [x] In the `routes` directory, create two new files: `routes/nutrition.js` and `routes/nutrition.test.js`
+      - [x] A new Express router should be created that will be mounted at the `/nutrition` endpoint. It should handle:
+        - [x] `GET` requests to the `/` endpoint
+          - [x] It should send a JSON response back to the client with all of the user-owned nutrition instances in an array like so: `{ "nutritions": [...] }`
+        - [x] `POST` requests to the `/` endpoint
+          - [x] It should accept a request body with one `nutrition` key containing an object with all the attributes of the `nutrition` entry
+          - [x] It should send a JSON response back to the client with a `201` status code, and the newly created nutrition instance like so: `{ "nutrition": { ... } }`
+        - [x] `GET` requests to the `/:nutritionId` endpoint
+          - [x] It should send a JSON response back to the client with the nutrition instance that matches the `:nutritionId` parameter like so: `{ "nutrition": { ... } }`
     - [ ] In the `routes/nutrition.test.js` file:
       - [ ] Test the `GET /nutrition` endpoint
         - [ ] Write test cases for:
@@ -793,15 +793,15 @@ Here are the pieces of functionality that should be built out for the backend:
           - [ ] Throws a `403 ForbiddenError` if a user tries to access a `nutrition` instance that does not belong to them
           - [ ] Throws a `404 NotFoundError` when the `nutritionId` does not match any nutrition in the database
           - [ ] Throws a `401 UnauthorizedError` if no valid user is logged in
-    - [ ] In the `routes/nutrition.js` file:
-      - [ ] Implement the features outlined in the tests until they're all passing
-  - [ ] Commit all work to `git`
+    - [x] In the `routes/nutrition.js` file:
+      - [x] Implement the features outlined in the tests until they're all passing
+  - [x] Commit all work to `git`
 - **Additional Resources**
-  - [ ] Create model and routes files for 1-2 additional resources that your app will track (sleep, exercise, steps, floors climbed, meditation, mood, heartrate, music practice, etc)
-  - [ ] Commit all work to `git`
+  - [x] Create model and routes files for 1-2 additional resources that your app will track (sleep, exercise, steps, floors climbed, meditation, mood, heartrate, music practice, etc)
+  - [x] Commit all work to `git`
 - **Summary Statistics**
-  - [ ] One of the last features of the API will be a model that calculates summary statistic on the different resources that users are tracking. This includes statistics like average calories per day, or max calories per category. To do that, we'll create a new `Activity` model and an `activity` route that will be used to populate the frontend.
-  - [ ] The **Activity** model
+  - [x] One of the last features of the API will be a model that calculates summary statistic on the different resources that users are tracking. This includes statistics like average calories per day, or max calories per category. To do that, we'll create a new `Activity` model and an `activity` route that will be used to populate the frontend.
+  - [x] The **Activity** model
     - [ ] In the `models` directory, create two new files: `models/Activity.js` and `models/Activity.test.js`
       - [ ] The `Activity` model should have **at least** the following static methods:
         - [ ] `calculateDailyCaloriesSummaryStats`

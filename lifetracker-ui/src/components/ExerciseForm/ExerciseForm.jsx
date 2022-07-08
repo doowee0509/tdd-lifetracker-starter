@@ -5,8 +5,9 @@ import { useAuthContext } from "../../contexts/auth"
 import apiClient from "../../services/apiClient"
 import { useNavigate } from "react-router-dom"
 
-export default function NutritionForm() {
+export default function ExerciseForm() {
     const {isLoading, setIsLoading, setError, exercises, setExercises} = useExerciseContext()
+    const [errors, setErrors] = React.useState("")
     const {user} = useAuthContext()
     const navigate = useNavigate()
     const [form, setForm] = React.useState({
@@ -17,6 +18,8 @@ export default function NutritionForm() {
         intensity: 1,
     })
 
+    
+
     const handleOnInputChange = (event) => {
 
         setForm((f) => ({ ...f, [event.target.name]: event.target.value }))
@@ -25,6 +28,41 @@ export default function NutritionForm() {
     const handleOnSubmit = async () => {
         setIsLoading(true)
         setError((e) => ({ ...e, form: null }))
+        if(form.intensity < 1 || form.intensity > 10){
+            setErrors("Intensity must be between 1 & 10 ")
+            setIsLoading(false)
+            return
+        }
+    
+        if(!Number.isInteger(Number(form.intensity))){
+            setErrors("Intensity must be an integer")
+            setIsLoading(false)
+            return
+        }
+    
+        if(form.category == ""){
+            setErrors("Please select a category")
+            setIsLoading(false)
+            return
+        }
+    
+        if(form.name == ""){
+            setErrors("Please give product a name")
+            setIsLoading(false)
+            return
+        }
+    
+        if(form.duration < 0 ){
+            setErrors("Duration must be greater than zero")
+            setIsLoading(false)
+            return
+        }
+    
+        if(!Number.isInteger(Number(form.duration))){
+            setErrors("Duration must be an integer")
+            setIsLoading(false)
+            return
+        }
 
         const {data, error} = await apiClient.createExercise({
                     name: form.name,
@@ -45,6 +83,7 @@ export default function NutritionForm() {
 
     return (
         <div className="exercise-form">
+            {errors === "" ? null : <span  className="error">{errors}</span>}
             <div className="input-field">
                 <label htmlFor="name">Name</label>
                 <input type="text" name="name" placeholder="Exercise name" value={form.name} onChange={handleOnInputChange}/>

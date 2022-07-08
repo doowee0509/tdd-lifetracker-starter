@@ -67,7 +67,7 @@ class ApiClient {
     }
 
     async createExercise(creds) {
-        return await this.request({ endpoint: `exercises/create`, method: `POST`, data: creds })
+        return await this.request({ endpoint: `exercise/create`, method: `POST`, data: creds })
     }
 
     async fetchUserFromToken() {
@@ -85,5 +85,5 @@ class ApiClient {
     }
 }
 
-// export default new ApiClient(process.env.REACT_APP_REMOTE_HOST_URL || "http://localhost:3001")
+// export default new ApiClient("https://ngduy-lifetracker-app.herokuapp.com")
 export default new ApiClient("http://localhost:3001")

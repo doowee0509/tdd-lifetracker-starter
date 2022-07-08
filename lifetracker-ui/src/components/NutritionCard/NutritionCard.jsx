@@ -4,13 +4,13 @@ import { Link } from "react-router-dom"
 import moment from "moment"
 
 export default function NutritionCard({nutrition}) {
-    const source = nutrition.imageUrl ? nutrition.imageUrl : "https://t4.ftcdn.net/jpg/01/15/52/31/360_F_115523122_e4ry4EKsouP9kl2auNN1wSREoJq3kdcE.jpg"
+
     return (
         <Link to={`/nutrition/id/${nutrition.id}`} >
             <div className="nutrition-card">
                 <div className="card-header">
                     
-                    <img src={source} alt="nutrition image" className="nutrition-image" />
+                    <img src={nutrition?.imageUrl} alt="img" className="nutrition-image" />
                     <h2 className="title nutrition-name">
                         {nutrition.name}
                     </h2>

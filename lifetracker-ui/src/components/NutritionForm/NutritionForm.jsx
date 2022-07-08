@@ -9,6 +9,8 @@ export default function NutritionForm() {
     const {isLoading, setIsLoading, setError, nutritions, setNutritions} = useNutritionContext()
     const {user} = useAuthContext()
     const navigate = useNavigate()
+    const [errors, setErrors] = React.useState("")
+
     const [form, setForm] = React.useState({
         name: "",
         category: "",
@@ -26,6 +28,29 @@ export default function NutritionForm() {
     const handleOnSubmit = async () => {
         setIsLoading(true)
         setError((e) => ({ ...e, form: null }))
+
+        if(form.calories < 0){
+            setErrors("Calories cannot be negative")
+            setIsLoading(false)
+            return
+        }
+        if(form.category == ""){
+            setErrors("Please select a category")
+            setIsLoading(false)
+            return
+        }
+
+        if(form.name == ""){
+            setErrors("Please give product a name")
+            setIsLoading(false)
+            return
+        }
+
+        if(form.imageUrl == ""){
+            setErrors("Please give an image url")
+            setIsLoading(false)
+            return
+        }
 
         const {data, error} = await apiClient.createNutrition({
                     name: form.name,
@@ -47,6 +72,7 @@ export default function NutritionForm() {
 
     return (
         <div className="nutrition-form">
+            {errors === "" ? null : <span  className="error">{errors}</span>}
             <div className="input-field">
                 <label htmlFor="name">Name</label>
                 <input type="text" name="name" placeholder="Nutrition name" value={form.name} onChange={handleOnInputChange}/>

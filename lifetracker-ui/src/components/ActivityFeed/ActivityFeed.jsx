@@ -32,11 +32,16 @@ export default function ActivityFeed() {
                 </div>
                 <div className="per-category">
                         <h4>Average Calories Per Category</h4>
+                </div><div className="per-day">
+                        <h4>Total Calories Per Day</h4>
                 </div>
                 <div className="summary-container">
-                    <SummaryStat stat={activity?.total?.sum} label="Total Exercise Minutes" substat="" />
-                    <SummaryStat stat={activity?.avg?.avg} label="Avg Calories Consumed" substat="" />
-                    <SummaryStat stat={activity?.max?.max} label="Max sleep" substat="" />
+                    {activity?.total?.sum ? <SummaryStat stat={activity?.total?.sum} label="Total Exercise Minutes" substat="" /> : null}
+                    {activity?.avg?.avg ? <SummaryStat stat={activity?.avg?.avg} label="Avg Calories Consumed" substat="" /> : null}
+                    {activity?.max?.max ? <SummaryStat stat={activity?.max?.max} label="Max sleep" substat="" /> : null}
+                    { (activity?.max?.max === null && activity?.avg?.avg === null && activity?.total?.sum === null)? (<div className="empty">
+                <h2 className="empty-message">Nothing here yet</h2>
+            </div>) : null}
                 </div>
             </div>
         </div>
