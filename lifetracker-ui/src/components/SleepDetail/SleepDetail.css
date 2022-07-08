@@ -2,11 +2,11 @@
     color: white;
 }
 
-.nutrition-detail a {
+.sleep-detail a {
     text-decoration: none;
 }
 
-.nutrition-detail {
+.sleep-detail {
     display: flex;
     align-items: center;
     justify-content: center;

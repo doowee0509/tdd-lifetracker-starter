@@ -1,19 +1,19 @@
 import { createContext, useState, useContext } from "react"
 
-const NutritionContext = createContext(null)
+const SleepContext = createContext(null)
 
-export const NutritionContextProvider = ({children}) => {
-    const [nutritions, setNutritions] = useState([])
+export const SleepContextProvider = ({children}) => {
+    const [sleeps, setSleeps] = useState([])
     const [initialized, setInitialized] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState({})
 
-    const nutritionValue = {nutritions, setNutritions, error, setError, initialized, setInitialized, isLoading, setIsLoading}
+    const SleepValue = {sleeps, setSleeps, error, setError, initialized, setInitialized, isLoading, setIsLoading}
     return (
-        <NutritionContext.Provider value ={nutritionValue}>
+        <SleepContext.Provider value ={SleepValue}>
             <>{children}</>
-        </NutritionContext.Provider>
+        </SleepContext.Provider>
     )
 }
 
-export const useNutritionContext = () => useContext(NutritionContext)
+export const useSleepContext = () => useContext(SleepContext)

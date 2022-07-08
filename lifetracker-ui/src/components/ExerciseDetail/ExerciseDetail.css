@@ -1,3 +1,13 @@
 .loading {
     color: white;
 }
+
+.exercise-detail a {
+    text-decoration: none;
+}
+
+.exercise-detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

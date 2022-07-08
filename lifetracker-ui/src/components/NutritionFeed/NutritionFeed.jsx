@@ -4,7 +4,6 @@ import NutritionCard from "components/NutritionCard/NutritionCard"
 import "./NutritionFeed.css"
 
 export default function NutritionFeed({nutritions}) {
-    console.log(nutritions)
     return (
         <div className="nutrition-feed">
             {!nutritions.length ? 

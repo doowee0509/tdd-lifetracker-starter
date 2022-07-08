@@ -1,8 +1,12 @@
 import * as React from "react"
 import "./ExerciseCard.css"
+import { Link } from "react-router-dom"
+import moment from "moment"
 
 export default function ExerciseCard({exercise}) {
     return (
+        <Link to={`/exercise/id/${exercise.id}`}>
+
         <div className="exercise-card">
             <div className="card-header">                
                 <h2 className="title exercise-name">
@@ -20,9 +24,10 @@ export default function ExerciseCard({exercise}) {
                 </div>
             </div>
             <div className="card-meta">
-                <small className="exercise-date">{exercise.created_at}</small>
+                <small className="exercise-date">{moment(new Date(exercise.created_at)).calendar()}</small>
                 <small className="exercise-category">{exercise.category}</small>
             </div>
         </div>
+        </Link>
     )
 }

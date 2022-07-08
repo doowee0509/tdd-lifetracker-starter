@@ -16,13 +16,10 @@ export default function LoginForm(props) {
     const navigate = useNavigate()
     const location = useLocation()
 
-    console.log(error)
-
     React.useEffect(() => {
         // if user is already logged in,
         // redirect them to the home page
         const link = location?.state?.link ? location?.state?.link : "/activity"
-        console.log(link)
         if (user?.email) {
             navigate(link)
         }

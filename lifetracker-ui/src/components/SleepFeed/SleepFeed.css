@@ -1,4 +1,4 @@
-.nutrition-feed {
+.sleep-feed {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -7,7 +7,7 @@
     padding-bottom: 50px;
 }
 
-.nutrition-feed .empty {
+.sleep-feed .empty {
     margin: 0 auto;
 }
 
@@ -18,3 +18,4 @@
     border: 1px solid white;
     border-radius: 4px;
 }
+

@@ -12,7 +12,7 @@ export default function NutritionForm() {
     const [form, setForm] = React.useState({
         name: "",
         category: "",
-        quantity: 1,
+        duration: 1,
         user_id: user.id,
         intensity: 1,
     })
@@ -29,7 +29,7 @@ export default function NutritionForm() {
         const {data, error} = await apiClient.createExercise({
                     name: form.name,
                     category: form.category,
-                    quantity: form.quantity,
+                    duration: form.duration,
                     intensity: form.intensity,
                     user_id: user.id
                 })
@@ -56,7 +56,7 @@ export default function NutritionForm() {
             <div className="split-input-field">
                 <div className="input-field">
                     <label htmlFor="duration">Duration (min)</label>
-                    <input type="number" name="quantity" placeholder="Quantity" value={form.quantity} onChange={handleOnInputChange}/>
+                    <input type="number" name="duration" placeholder={1} value={form.quantity} onChange={handleOnInputChange}/>
                 </div>
                 <div className="input-field">
                     <label htmlFor="intensity">Intensity (1-10)</label>

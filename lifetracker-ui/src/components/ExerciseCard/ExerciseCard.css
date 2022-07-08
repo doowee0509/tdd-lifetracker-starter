@@ -7,7 +7,7 @@
     justify-content: space-between;
     position: relative;
     padding:0 8px 8px 8px;
-    background: var(--accent-aqua);
+    background: var(--orange-linear-gradient);
 }
 
 .exercise-card .card-header {

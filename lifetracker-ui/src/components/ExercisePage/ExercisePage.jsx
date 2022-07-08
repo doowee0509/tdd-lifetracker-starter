@@ -35,8 +35,8 @@ function ExercisePage() {
             
             if (error) setError((e) => ({ ...e, exercises: error }))
     
-            if (data?.Exercises) {
-                setExercises(data.Exercises)
+            if (data?.exercises) {
+                setExercises(data.exercises)
             }
         }
         setIsLoading(false)

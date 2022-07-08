@@ -1,0 +1,28 @@
+.summary-stat {
+    height: 110px;
+    width: 360px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    background: var(--purple-linear-gradient);
+}
+
+.summary-stat .detail{
+    justify-content: space-around;
+    padding: 8px;
+}
+
+.summary-stat .detail p{
+    font-size: 20px;
+    color: white;
+}
+
+.summary-stat .detail h1 {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.summary-stat .detail small {
+    color: white;
+}

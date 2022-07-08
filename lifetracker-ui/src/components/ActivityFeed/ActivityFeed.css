@@ -40,17 +40,17 @@
 
 .gold {
     color: var(--accent-gold);
-    border: solid 1px var(--accent-gold)
+    border: solid 1px var(--accent-gold);
 }
 
 .blue {
     color: var(--accent-blue);
-    border: solid 1px var(--accent-blue)
+    border: solid 1px var(--accent-blue);
 }
 
 .aqua {
     color: var(--accent-aqua);
-    border: solid 1px var(--accent-aqua)
+    border: solid 1px var(--accent-aqua);
 }
 
 .per-category {
@@ -59,4 +59,9 @@
 
 .add-btns a {
     text-decoration: none;
+}
+
+.summary-container {
+    display: flex;
+    gap: 20px;
 }

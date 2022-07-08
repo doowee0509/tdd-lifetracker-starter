@@ -1,5 +1,5 @@
 const express = require("express")
-const Nutrition = require("../models/nutrition")
+const Sleep = require("../models/sleep")
 const router = express.Router()
 const security = require("../middleware/security")
 
@@ -7,8 +7,8 @@ router.get("/", security.requireAuthenticatedUser, async function (req, res, nex
     try {
         const {user_id} = res.locals?.user
         //get required information and create new user in the database
-        const nutritions = await Nutrition.listNutritionsForUser(user_id)
-        return res.status(200).json({ nutritions })
+        const sleeps = await Sleep.listSleepsForUser(user_id)
+        return res.status(200).json({ sleeps })
     } catch (err) {
         next(err)
     }
@@ -17,20 +17,20 @@ router.get("/", security.requireAuthenticatedUser, async function (req, res, nex
 router.post("/create", security.requireAuthenticatedUser, async function (req, res, next) {
     try {
         //get user email and password and try to authenticate
-        const nutrition = await Nutrition.createNutrition(req.body)
-        return res.status(200).json({ nutrition })
+        const sleep = await Sleep.createSleep(req.body)
+        return res.status(200).json({ sleep })
     } catch (err) {
         next(err)
     }
 })
 
-router.get("/:nutritionId", security.requireAuthenticatedUser, async function (req, res, next) {
+router.get("/:sleepId", security.requireAuthenticatedUser, async function (req, res, next) {
     try {
         //get required information and create new user in the database
-        const nutritionId = req.params.nutritionId
-        const nutrition = await Nutrition.fetchNutritionById(nutritionId)
+        const sleepId = req.params.sleepId
+        const sleep = await Sleep.fetchSleepById(sleepId)
 
-        return res.status(201).json({ nutrition })
+        return res.status(201).json({ sleep })
     } catch (err) {
         next(err)
     }

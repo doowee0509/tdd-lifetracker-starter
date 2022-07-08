@@ -1,0 +1,25 @@
+.sleep-overview {
+    display: flex;
+    flex-direction: column;
+}
+
+.sleep-overview .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sleep-overview .header h3 {
+    font-size: 42px;
+    font-weight: 700;
+    color: white;
+}
+
+.sleep-overview a {
+    text-decoration: none;
+}
+
+.add-btn {
+    cursor: pointer;
+}

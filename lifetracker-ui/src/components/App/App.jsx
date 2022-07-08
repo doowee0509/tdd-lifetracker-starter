@@ -9,6 +9,7 @@ import ActivityPage from "components/ActivityPage/ActivityPage"
 import { AuthContextProvider, useAuthContext } from "../../contexts/auth"
 import NutritionPage from "../NutritionPage/NutritionPage"
 import ExercisePage from "../ExercisePage/ExercisePage"
+import SleepPage from "../SleepPage/SleepPage"
 import apiClient from "../../services/apiClient"
 import "./App.css"
 
@@ -65,6 +66,7 @@ function App() {
               <Route path="/register" element={<RegistrationPage  />} />
               <Route path="/activity" element={<ActivityPage />} />
               <Route path="/nutrition/*" element={<NutritionPage />} />
+              <Route path="/sleep/*" element={<SleepPage />} />
               <Route path="/exercise/*" element={<ExercisePage />} />
               <Route path="*" element={<NotFound />}/>
             </Routes>

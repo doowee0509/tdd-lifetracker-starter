@@ -30,16 +30,44 @@ class ApiClient {
         }
     }
 
+    async fetchActivitySummary() {
+        return await this.request({ endpoint: `activity`, method: `GET`})   
+    }
+
     async fetchUserNutritions() {
-        return await this.request({ endpoint: `nutritions`, method: `GET`})   
+        return await this.request({ endpoint: `nutrition`, method: `GET`})   
     }
 
     async fetchNutritionById(id) {
-        return await this.request({ endpoint: `nutritions/${id}`, method: `GET`})
+        return await this.request({ endpoint: `nutrition/${id}`, method: `GET`})
     }
 
     async createNutrition(creds) {
-        return await this.request({ endpoint: `nutritions/create`, method: `POST`, data: creds })
+        return await this.request({ endpoint: `nutrition/create`, method: `POST`, data: creds })
+    }
+
+    async fetchUserSleeps() {
+        return await this.request({ endpoint: `sleep`, method: `GET`})   
+    }
+
+    async fetchSleepById(id) {
+        return await this.request({ endpoint: `sleep/${id}`, method: `GET`})
+    }
+
+    async createSleep(creds) {
+        return await this.request({ endpoint: `sleep/create`, method: `POST`, data: creds })
+    }
+
+    async fetchUserExercises() {
+        return await this.request({ endpoint: `exercise`, method: `GET`})   
+    }
+
+    async fetchExerciseById(id) {
+        return await this.request({ endpoint: `exercise/${id}`, method: `GET`})
+    }
+
+    async createExercise(creds) {
+        return await this.request({ endpoint: `exercises/create`, method: `POST`, data: creds })
     }
 
     async fetchUserFromToken() {

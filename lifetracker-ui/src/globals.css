@@ -11,8 +11,16 @@ body {
   --codepath-green: #30c98e;
   --accent-gold: #ffab09;
   --accent-blue: #4e81eb;
-  --accent-aqua: #03c5d1;
+  --accent-aqua: rgba(251,112,144,0.85);
   --less-dark-bg: #3d4a46;
+  --red-linear-gradient: linear-gradient(64.7deg,rgba(251,112,144,0.85),#c90000);
+  --red-linear-gradient: linear-gradient(64.7deg,#c90000,rgba(251,112,144,0.85));
+  --blue-linear-gradient: linear-gradient(64.7deg,#4e81eb,#4e81eb);
+  --purple-linear-gradient: linear-gradient(64.7deg,#441dfc,#4e81eb);
+  --orange-linear-gradient: linear-gradient(64.7deg,#8e3232,#c96d00);
+  --teal-linear-gradient: linear-gradient(64.7deg,#1000c9,#00c98e);
+  --aqua-linear-gradient: linear-gradient(64.7deg,#03c5d1,#03c5d1);
+  --gold-linear-gradient: linear-gradient(64.7deg,#ffab09,#ffab09);
 }
 
 * {
@@ -20,5 +28,5 @@ body {
 }
 
 .content {
-  margin: 0 20rem;
+  margin: 0 12rem;
 }

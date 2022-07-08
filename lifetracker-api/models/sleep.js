@@ -1,10 +1,10 @@
 const db = require("../db")
 const { BadRequestError } = require("../utils/errors")
-class Nutrition {
+class Sleep {
 
-    static async createNutrition(creds) {
+    static async createSleep(creds) {
         //required fields are email and password, throw error if either are missing
-        const requiredFields = ['name', 'category', 'quantity' ,'calories', 'imageUrl', 'user_id']
+        const requiredFields = ['start_time', 'end_time', 'user_id']
         requiredFields.forEach(field => {
             if (!creds.hasOwnProperty(field)) {
                 throw new BadRequestError(`Missing ${field} in request body.`)
@@ -13,47 +13,45 @@ class Nutrition {
                 throw new BadRequestError(`Cannot have empty ${field} in request body.`)
             }
         })
+        const hours = Math.floor(Math.abs(new Date(creds.start_time) - new Date(creds.end_time)) / 36e5);
 
         const result = await db.query(`
-            INSERT INTO nutrition (
-                name,
-                category,
-                calories,
-                image_url,
+            INSERT INTO sleeps (
+                start_time,
+                end_time,
                 user_id,
-                quantity
+                hours
             )
-            VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING id, name, category, calories, image_url, user_id, created_at, quantity;
+            VALUES ($1, $2, $3, $4)
+            RETURNING id, start_time, end_time, hours, user_id, created_at;
         `,
-        [creds.name, creds.category, creds.calories , creds.imageUrl, creds.user_id, creds.quantity]
+        [creds.start_time, creds.end_time, creds.user_id, hours]
         )
 
         return result.rows[0]
     }
 
-    static async fetchNutritionById(id) {
+    static async fetchSleepById(id) {
         
         if (!id) {
             throw new BadRequestError(`Missing ${field} in request body.`)
         } 
         
-        const result = await db.query("SELECT * FROM nutrition WHERE id = $1;", [id])
+        const result = await db.query("SELECT * FROM sleeps WHERE id = $1;", [id])
     
         return result.rows[0]
     }
 
-    static async listNutritionsForUser(user_id) {
+    static async listSleepsForUser(user_id) {
         if (!user_id) {
             throw new BadRequestError("No user_id provided")
         }
 
-        const query = `SELECT * FROM nutrition WHERE user_id = $1`
+        const query = `SELECT * FROM sleeps WHERE user_id = $1`
 
         const results = await db.query(query, [user_id])
-        console.log(results.rows)
         return results.rows
     }
 }
 
-module.exports = Nutrition
+module.exports = Sleep
