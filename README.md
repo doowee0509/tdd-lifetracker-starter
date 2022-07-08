@@ -44,6 +44,10 @@ Implement any of the following features to improve the application:
 
 ### Walkthrough Video
 
+### Week 5 GIF
+![ezgif com-gif-maker-6](https://user-images.githubusercontent.com/96898896/178077216-4a0ffebe-16c5-4508-9a33-cebf34d21ea8.gif)
+
+
 ### Week 4 GIF
 ![ezgif com-gif-maker-5](https://user-images.githubusercontent.com/96898896/176970976-d5e77f68-5178-400d-80c0-6efb2cd9b8e6.gif)
 
